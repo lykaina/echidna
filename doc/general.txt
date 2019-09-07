@@ -1,0 +1,6 @@
+values are 2 bytes
+mem addresses are written in 4-hex-big-endian.
+values are written in 4-hex-big-endian.
+all math is mod 65536
+whitespace ignored
+subroutines end with the "--" op.

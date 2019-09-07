@@ -1,0 +1,28 @@
+Operations: (arguments expected)
+[mem] supports arg prefixes @ and $
+[val] supports arg prefixes = and @ and $
+Op	arg1	arg2	arg3	arg4
+&	4-byte-label			
+-	1-byte-label			
+--				
+_	1-byte-label			
+G				
+H	[mem]	[val]		
+I	[mem]			
+J	[val]			
+K	2-hex-mask			
+L	[mem]	[val]	[val]	[val]
+M	[mem]	[val]	[val]	1-hex-logic-op
+N	4-byte-label	2-hex-mask		
+O	[val]	[val]	1-byte-label	
+P	[val]	[val]	1-byte-label	
+Q	[val]	[val]	1-byte-label	
+R	[mem]			
+S	[mem]	[val]	[val]	
+T	[mem]	[val]	[val]	
+U	[mem]	[val]	[val]	
+V	[mem]	[val]	[val]	
+W	[mem]	[val]	[val]	
+X	[mem]	[val]	[val]	
+Y	[mem]	[val]	[val]	
+Z	[mem]	[val]	[val]	
