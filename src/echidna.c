@@ -172,17 +172,8 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
     case 'N':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
         rec[++reccount]=progindex;
-        if(hextoval(a[1])==15){
-            fprintf(stderr,"ERROR: SUBCODE INVALID 1");
-            return 3;
-        }
-        else if((hextoval(a[1])*256+hextoval(a[2]))==0){
-            fprintf(stderr,"ERROR: SUBCODE INVALID 2");
-            return 3;
-        }
-        else submask[(insub+1)%SUBMASKSIZE]=hextoval(a[1])*16+hextoval(a[2]);
+        submask[(insub+1)%SUBMASKSIZE]=hextoval(a[1])*16+hextoval(a[2]);
         progindex=findand(a[1],a[2]);
-        for(i=0;i<256;i++) mem[(hextoval(a[1])*16+hextoval(a[2]))*256+i]=0;
         break;
     case 'O':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
@@ -249,29 +240,13 @@ unsigned char readprog(unsigned long bytepos)
 unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
 {
     unsigned int r=0;
-    if(hextoval(c)==15)
-    { 
-        if(b=='!') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-        else if(b=='@') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
-        else
-        {
-            fprintf(stderr,"ERROR: MVAL INPUT 1");
-            while(1);
-            r=0;
-        }
-    }
+    if(b=='!') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
+    else if(b=='@') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
     else
     {
-        if((b=='!') && (insub == 0)) r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-        else if((b=='!') && (insub > 0)) r=mem[submask[insub]*256+hextoval(e)*16+hextoval(f)];
-        else if((b=='@') && (insub == 0)) r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
-        else if((b=='@') && (insub > 0)) r=(unsigned int)(submask[insub]*256+hextoval(e)*16+hextoval(f));
-        else
-        {
-            fprintf(stderr,"ERROR: MVAL INPUT 0");
-            while(1);
-            r=0;
-        }
+        fprintf(stderr,"ERROR: MVAL INPUT");
+        while(1);
+        r=0;
     }
     return r;
 }
@@ -280,31 +255,14 @@ unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned ch
 unsigned int pval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
 {
     unsigned int r=0;
-    if(hextoval(c)==15)
-    {
-        if(b=='@') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-        else if(b=='!') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
-        else if(b=='=') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
-        else
-        {
-            fprintf(stderr,"ERROR: PVAL INPUT 1");
-            while(1);
-            r=0;
-        }
-    }
+    if(b=='@') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
+    else if(b=='!') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
+    else if(b=='=') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
     else
     {
-        if((b=='@') && (insub == 0)) r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-        else if((b=='@') && (insub > 0)) r=mem[submask[insub]*256+hextoval(e)*16+hextoval(f)];
-        else if((b=='!') && (insub == 0)) r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
-        else if((b=='!') && (insub > 0)) r=mem[mem[submask[insub]*256+hextoval(e)*16+hextoval(f)]];
-        else if(b=='=') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
-        else
-        {
-            fprintf(stderr,"ERROR: PVAL INPUT 0");
-            while(1);
-            r=0;
-        }
+        fprintf(stderr,"ERROR: PVAL INPUT");
+        while(1);
+        r=0;
     }
     return r;
 }
