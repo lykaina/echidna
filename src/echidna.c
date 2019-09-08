@@ -39,6 +39,7 @@ unsigned long nextiw(unsigned char);
 unsigned long findand(unsigned char, unsigned char);
 unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
 unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
+void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 
 unsigned long progindex;
 unsigned long filesize;
@@ -56,7 +57,7 @@ const unsigned char argnums[256] = {
 /*2*/ 0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0, /*2*/
 /*3*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*3*/
 /*4*/ 0,0,0,0,0,0,0,0,10,5,5,0,20,16,2,11, /*4*/
-/*5*/ 11,11,5,15,15,15,15,15,15,15,15,0,0,0,0,1, /*5*/
+/*5*/ 11,11,5,21,15,15,15,15,15,15,15,0,0,0,0,1, /*5*/
 /*6*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*6*/
 /*7*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*7*/
 /*8*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*8*/
@@ -197,7 +198,7 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=rand()%65536;
         break;
     case 'S':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=readprog(pval(a[6],a[7],a[8],a[9],a[10])*65536+pval(a[11],a[12],a[13],a[14],a[15]));
+        cmd_s(mval(a[1],a[2],a[3],a[4],a[5]),hextoval(a[6])*16+hextoval(a[7]),hextoval(a[8])*16+hextoval(a[9]),hextoval(a[10])*16+hextoval(a[11]),hextoval(a[12])*16+hextoval(a[13]),hextoval(a[14])*16+hextoval(a[15]),hextoval(a[16])*16+hextoval(a[17]),hextoval(a[18])*16+hextoval(a[19]),hextoval(a[20])*16+hextoval(a[21]));
         break;
     case 'T':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])+pval(a[11],a[12],a[13],a[14],a[15]))%65536;
@@ -329,4 +330,16 @@ unsigned int cmd_m(unsigned int ia, unsigned int ib, unsigned char c)
         r+=(ta==0)?((tb==0)?c0:c1):((tb==0)?c2:c3);
     }
     return r;
+}
+
+void cmd_s(unsigned int addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
+{
+    mem[addr]=a;
+    mem[(addr+1)%65536]=b;
+    mem[(addr+2)%65536]=c;
+    mem[(addr+3)%65536]=d;
+    mem[(addr+4)%65536]=e;
+    mem[(addr+5)%65536]=f;
+    mem[(addr+6)%65536]=g;
+    mem[(addr+7)%65536]=h;
 }

@@ -16,7 +16,7 @@ O	ifwh_eq	if/while val0 == val1 1-uchar-label
 P	ifwh_lt	if/while val0 < val1 1-uchar-label
 Q	ifwh_ne	if/while val0 != val1 1-uchar-label
 R	rand	mem[val] = random num from 0 to 65535
-S	read	mem[val] pval-high pval-low (pval represents 32-bit position in prog file)
+S	load	mem[val0] to mem[val0 + 7] <- 8-bytes-in-hex
 T	add	mem[val0] = (val1 + val2)
 U	sub	mem[val0] = (val1 - val2)
 V	mul	mem[val0] = (val1 * val2)

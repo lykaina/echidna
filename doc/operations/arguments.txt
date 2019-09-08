@@ -18,7 +18,7 @@ O	[val]	[val]	1-byte-label
 P	[val]	[val]	1-byte-label	
 Q	[val]	[val]	1-byte-label	
 R	[mem]			
-S	[mem]	[val]	[val]	
+S	[mem]	8-bytes-in-hex		
 T	[mem]	[val]	[val]	
 U	[mem]	[val]	[val]	
 V	[mem]	[val]	[val]	
