@@ -150,7 +150,7 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
         else reccount--;
         break;
     case 'G':
-        return 2;
+        //return 2;
         break;
     case 'H':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=pval(a[6],a[7],a[8],a[9],a[10]);
