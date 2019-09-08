@@ -280,23 +280,38 @@ unsigned long nextiw(unsigned char label)
 {
     unsigned char b=0,c=0;
     unsigned long p=progindex;
+    if(p >= filesize) while(1);
+    fseek(myFile, p, SEEK_SET);
+    b=(unsigned char)fgetc(myFile);
+    c=(unsigned char)fgetc(myFile);
     while(!(((b=='-')||(b=='_'))&&(c==label))){
-        b=readprog(p++);
-        c=readprog(p);
+        p++;
+        if(p >= filesize) while(1);
+        b=c;
+        c=(unsigned char)fgetc(myFile);
     }
-    return p-1;
+    fseek(myFile, progindex, SEEK_SET);
+    return p;
 }
 
 unsigned long findand(unsigned char l1, unsigned char l2)
 {
-    unsigned char b=0,c=0,d=0,e=0,f=0;
+    unsigned char b=0,c=0,d=0;
     unsigned long p=0;
+    if(p >= filesize) while(1);
+    fseek(myFile, p, SEEK_SET);
+    b=(unsigned char)fgetc(myFile);
+    c=(unsigned char)fgetc(myFile);
+    d=(unsigned char)fgetc(myFile);
     while(!((b=='&')&&(c==l1)&&(d==l2))){
-        b=readprog(p++);
-        c=readprog(p);
-        d=readprog(p+1);
+        p++;
+        if(p >= filesize) while(1);
+        b=c;
+        c=d;
+        d=(unsigned char)fgetc(myFile);
     }
-    return p-1;
+    fseek(myFile, progindex, SEEK_SET);
+    return p;
 }
 
 unsigned int cmd_l(unsigned int ia, unsigned int ib, unsigned int ic)
