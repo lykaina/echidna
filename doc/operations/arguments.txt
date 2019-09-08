@@ -10,7 +10,7 @@ G
 H	[mem]	[val]		
 I	[mem]			
 J	[val]			
-K	2-hex-mask			
+K				
 L	[mem]	[val]	[val]	[val]
 M	[mem]	[val]	[val]	1-hex-logic-op
 N	2-hex-label			

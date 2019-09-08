@@ -8,7 +8,7 @@ G	stop
 H	store	mem[val0] = val1
 I	input	mem[val] = input
 J	output	val%256
-K	clear sub	set 256-byte memory range to zero. input: 2-hex-memory-upper-mask
+K	kill	removed former 'K' code. Now equal to 'G'.
 L	bitwise_1bit	mem[val0] = val1 2byte-mask-if-zero 2byte-mask-if-one
 M	bitwise_2bit	mem[val0] = val1 val2 1-hex-logic-code
 N	call sub	2-hex-label
