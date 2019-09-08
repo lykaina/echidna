@@ -6,7 +6,7 @@ Op	arg1	arg2	arg3	arg4
 -	1-byte-label			
 --				
 _	1-byte-label			
-G				
+G	[val]			
 H	[mem]	[val]		
 I	[mem]			
 J	[val]			

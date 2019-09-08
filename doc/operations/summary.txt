@@ -4,11 +4,11 @@ Op	Name	Info
 -	endwhile	with 1-uchar-label after (no whitespace)
 --	endsub	endwhile with label='-'
 _	endif	1-uchar-label after (no whitespace)
-G	null	Does nothing.
+G	outi	outputs val as number string in range "0" to "65535".
 H	store	mem[val0] = val1
 I	input	mem[val] = input
-J	output	val%256
-K	stop	Terminates program.
+J	outc	outputs val%256 as a single char.
+K	stop	terminates program.
 L	bitwise_1bit	mem[val0] = val1 2byte-mask-if-zero 2byte-mask-if-one
 M	bitwise_2bit	mem[val0] = val1 val2 1-hex-logic-code
 N	call sub	2-hex-label
