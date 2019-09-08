@@ -1,5 +1,5 @@
 65536 x 2-byte unsigned memory "mem"
-128 x 4-byte unsigned loop nesting memory "rec" (used in ops: N, O, P, Q, - )
+256 x 4-byte unsigned loop nesting memory "rec" (used in ops: N, O, P, Q, - )
 1 byte counter for loop nesting memory "reccount"
 4 GiB max program file size
 ----
@@ -9,6 +9,6 @@ Range 0100-EFFF	subroutine memory, each using a 256-byte range
 Range F000-FFFF	common memory
 ----
 Memory Notation:
-$xxxx	indirect memory address xxxx
+!xxxx	indirect memory address xxxx
 @xxxx	direct memory address xxxx
 =xxxx	literal xxxx

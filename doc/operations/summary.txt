@@ -1,6 +1,6 @@
 Operations: (summary)
 Op	Name	Info
-&	sub start	4-uchar-label after (no whitespace)
+&	sub start	2-hex-label after (no whitespace)
 -	endwhile	with 1-uchar-label after (no whitespace)
 --	endsub	endwhile with label='-'
 _	endif	1-uchar-label after (no whitespace)
@@ -11,7 +11,7 @@ J	output	val%256
 K	clear sub	set 256-byte memory range to zero. input: 2-hex-memory-upper-mask
 L	bitwise_1bit	mem[val0] = val1 2byte-mask-if-zero 2byte-mask-if-one
 M	bitwise_2bit	mem[val0] = val1 val2 1-hex-logic-code
-N	call sub	4-uchar-label and a 2-hex-memory-upper-mask
+N	call sub	2-hex-label
 O	ifwh_eq	if/while val0 == val1 1-uchar-label
 P	ifwh_lt	if/while val0 < val1 1-uchar-label
 Q	ifwh_ne	if/while val0 != val1 1-uchar-label

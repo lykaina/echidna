@@ -27,8 +27,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #define MEMSIZE 65536
 #define INSIZE 32
-#define RECSIZE 128
-#define SUBMASKSIZE 64
+#define RECSIZE 256
+#define SUBMASKSIZE 192
 
 int cmds(unsigned char[INSIZE], unsigned int);
 unsigned char readprog(unsigned long);
@@ -36,7 +36,7 @@ unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, un
 unsigned int pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 unsigned char hextoval(char);
 unsigned long nextiw(unsigned char);
-unsigned long findand(unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned long findand(unsigned char, unsigned char);
 unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
 unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
 
@@ -53,9 +53,9 @@ const unsigned char argnums[256] = {
 /*    0 1 2 3 4 5 6 7 8 9 A B C D E F     */
 /*0*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*0*/
 /*1*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*1*/
-/*2*/ 0,0,0,0,0,0,4,0,0,0,0,0,0,1,0,0, /*2*/
+/*2*/ 0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0, /*2*/
 /*3*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*3*/
-/*4*/ 0,0,0,0,0,0,0,0,10,5,5,0,20,16,6,11, /*4*/
+/*4*/ 0,0,0,0,0,0,0,0,10,5,5,0,20,16,2,11, /*4*/
 /*5*/ 11,11,5,15,15,15,15,15,15,15,15,0,0,0,0,1, /*5*/
 /*6*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*6*/
 /*7*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*7*/
@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
 int cmds(unsigned char a[INSIZE], unsigned int wcount){
   int i;
   switch(a[0]){
-    case '&': //Used to start a subroutine. Four alpha-num follow
+    case '&': //Used to start a subroutine. Two hex follow. No Whitespace.
         insub++;
         break;
     case '-':
@@ -172,16 +172,17 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
     case 'N':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
         rec[++reccount]=progindex;
-        progindex=findand(a[1],a[2],a[3],a[4]);
-        if(hextoval(a[5])==15){
-            fprintf(stderr,"ERROR: SUBRANGE ASSIGNED TO SUB IS INSIDE COMMON RANGE");
+        if(hextoval(a[1])==15){
+            fprintf(stderr,"ERROR: SUBCODE INVALID 1");
             return 3;
         }
-        else if((hextoval(a[5])*256+hextoval(a[6]))==0){
-            fprintf(stderr,"ERROR: SUBRANGE ASSIGNED TO SUB IS BASE RANGE");
+        else if((hextoval(a[1])*256+hextoval(a[2]))==0){
+            fprintf(stderr,"ERROR: SUBCODE INVALID 2");
             return 3;
         }
-        else submask[(insub+1)%SUBMASKSIZE]=hextoval(a[5])*16+hextoval(a[6]);
+        else submask[(insub+1)%SUBMASKSIZE]=hextoval(a[1])*16+hextoval(a[2]);
+        progindex=findand(a[1],a[2]);
+        for(i=0;i<256;i++) mem[(hextoval(a[1])*16+hextoval(a[2]))*256+i]=0;
         break;
     case 'O':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
@@ -244,12 +245,13 @@ unsigned char readprog(unsigned long bytepos)
   return u;
 }
 
+
 unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
 {
     unsigned int r=0;
     if(hextoval(c)==15)
-    {
-        if(b=='$') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
+    { 
+        if(b=='!') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
         else if(b=='@') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
         else
         {
@@ -260,8 +262,8 @@ unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned ch
     }
     else
     {
-        if((b=='$') && (insub == 0)) r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-        else if((b=='$') && (insub > 0)) r=mem[submask[insub]*256+hextoval(e)*16+hextoval(f)];
+        if((b=='!') && (insub == 0)) r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
+        else if((b=='!') && (insub > 0)) r=mem[submask[insub]*256+hextoval(e)*16+hextoval(f)];
         else if((b=='@') && (insub == 0)) r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
         else if((b=='@') && (insub > 0)) r=(unsigned int)(submask[insub]*256+hextoval(e)*16+hextoval(f));
         else
@@ -281,7 +283,7 @@ unsigned int pval(unsigned char b, unsigned char c, unsigned char d, unsigned ch
     if(hextoval(c)==15)
     {
         if(b=='@') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-        else if(b=='$') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
+        else if(b=='!') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
         else if(b=='=') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
         else
         {
@@ -294,8 +296,8 @@ unsigned int pval(unsigned char b, unsigned char c, unsigned char d, unsigned ch
     {
         if((b=='@') && (insub == 0)) r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
         else if((b=='@') && (insub > 0)) r=mem[submask[insub]*256+hextoval(e)*16+hextoval(f)];
-        else if((b=='$') && (insub == 0)) r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
-        else if((b=='$') && (insub > 0)) r=mem[mem[submask[insub]*256+hextoval(e)*16+hextoval(f)]];
+        else if((b=='!') && (insub == 0)) r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
+        else if((b=='!') && (insub > 0)) r=mem[mem[submask[insub]*256+hextoval(e)*16+hextoval(f)]];
         else if(b=='=') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
         else
         {
@@ -326,16 +328,14 @@ unsigned long nextiw(unsigned char label)
     return p-1;
 }
 
-unsigned long findand(unsigned char l1, unsigned char l2, unsigned char l3, unsigned char l4)
+unsigned long findand(unsigned char l1, unsigned char l2)
 {
     unsigned char b=0,c=0,d=0,e=0,f=0;
     unsigned long p=0;
-    while(!((b=='&')&&(c==l1)&&(d==l2)&&(e==l3)&&(f==l4))){
+    while(!((b=='&')&&(c==l1)&&(d==l2))){
         b=readprog(p++);
         c=readprog(p);
         d=readprog(p+1);
-        e=readprog(p+2);
-        f=readprog(p+3);
     }
     return p-1;
 }

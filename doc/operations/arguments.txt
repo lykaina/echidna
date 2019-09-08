@@ -2,7 +2,7 @@ Operations: (arguments expected)
 [mem] supports arg prefixes @ and $
 [val] supports arg prefixes = and @ and $
 Op	arg1	arg2	arg3	arg4
-&	4-byte-label			
+&	2-hex-label			
 -	1-byte-label			
 --				
 _	1-byte-label			
@@ -13,7 +13,7 @@ J	[val]
 K	2-hex-mask			
 L	[mem]	[val]	[val]	[val]
 M	[mem]	[val]	[val]	1-hex-logic-op
-N	4-byte-label	2-hex-mask		
+N	2-hex-label			
 O	[val]	[val]	1-byte-label	
 P	[val]	[val]	1-byte-label	
 Q	[val]	[val]	1-byte-label	
