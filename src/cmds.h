@@ -35,6 +35,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <stdbool.h>
 #endif
 
+#ifndef HC_TIME
+#define HC_TIME
+#include <time.h>
+#endif
+
 #ifndef H_DEFINES
 #define H_DEFINES
 #include "defines.h"
@@ -51,10 +56,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 #endif
 
 int cmds(unsigned char[INSIZE]);
-unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned int pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned int nextiw(unsigned char, unsigned char);
-unsigned int findand(unsigned char, unsigned char);
-unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
-unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
+unsigned short mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned short pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned short nextiw(unsigned char, unsigned char);
+unsigned short findand(unsigned char, unsigned char);
+unsigned short cmd_l(unsigned int, unsigned int, unsigned int);
+unsigned short cmd_m(unsigned int, unsigned int, unsigned char);
 void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);

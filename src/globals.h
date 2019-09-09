@@ -33,12 +33,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 unsigned long progindex;
 unsigned long filesize;
 FILE *myFile;
-unsigned int mem[MEMSIZE];
+unsigned short mem[MEMSIZE];
 unsigned char pmem[PROGMEMSIZE];
 unsigned int rec[RECSIZE];
 unsigned char reccount;
 unsigned char submask[SUBMASKSIZE];
 unsigned char insub;
-unsigned int mempos;
-unsigned int pmempos;
-unsigned int progsize;
+unsigned short pmempos;
+unsigned short progsize;

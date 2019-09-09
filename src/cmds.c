@@ -48,7 +48,7 @@ int cmds(unsigned char a[INSIZE]){
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=pval(a[6],a[7],a[8],a[9],a[10]);
         break;
     case 'I':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=getchar()%256;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)(getchar()%256);
         break;
     case 'J':
         putchar(pval(a[1],a[2],a[3],a[4],a[5]));
@@ -87,31 +87,32 @@ int cmds(unsigned char a[INSIZE]){
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
+        srand((unsigned int)(clock()%65536));
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=rand()%65536;
         break;
     case 'S':
         cmd_s(mval(a[1],a[2],a[3],a[4],a[5]),hextoval(a[6])*16+hextoval(a[7]),hextoval(a[8])*16+hextoval(a[9]),hextoval(a[10])*16+hextoval(a[11]),hextoval(a[12])*16+hextoval(a[13]),hextoval(a[14])*16+hextoval(a[15]),hextoval(a[16])*16+hextoval(a[17]),hextoval(a[18])*16+hextoval(a[19]),hextoval(a[20])*16+hextoval(a[21]));
         break;
     case 'T':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])+pval(a[11],a[12],a[13],a[14],a[15]))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])+pval(a[11],a[12],a[13],a[14],a[15]))%65536);
         break;
     case 'U':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(65536+pval(a[6],a[7],a[8],a[9],a[10])-pval(a[11],a[12],a[13],a[14],a[15]))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((65536+pval(a[6],a[7],a[8],a[9],a[10])-pval(a[11],a[12],a[13],a[14],a[15]))%65536);
         break;
     case 'V':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])*pval(a[11],a[12],a[13],a[14],a[15]))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])*pval(a[11],a[12],a[13],a[14],a[15]))%65536);
         break;
     case 'W':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])/pval(a[11],a[12],a[13],a[14],a[15]))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])/pval(a[11],a[12],a[13],a[14],a[15]))%65536);
         break;
     case 'X':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])%pval(a[11],a[12],a[13],a[14],a[15]))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])%pval(a[11],a[12],a[13],a[14],a[15]))%65536);
         break;
     case 'Y':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])<<(pval(a[11],a[12],a[13],a[14],a[15])%16))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])<<(pval(a[11],a[12],a[13],a[14],a[15])%16))%65536);
         break;
     case 'Z':
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(pval(a[6],a[7],a[8],a[9],a[10])>>(pval(a[11],a[12],a[13],a[14],a[15])%16))%65536;
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])>>(pval(a[11],a[12],a[13],a[14],a[15])%16))%65536);
         break;
     default:
         return 2;
@@ -119,11 +120,11 @@ int cmds(unsigned char a[INSIZE]){
   return 0;
 }
 
-unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
+unsigned short mval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
 {
-    unsigned int r=0;
+    unsigned short r=0;
     if(b=='!') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-    else if(b=='@') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
+    else if(b=='@') r=(unsigned short)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
     else
     {
         fprintf(stderr,"ERROR: MVAL INPUT");
@@ -134,12 +135,12 @@ unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned ch
 }
 
 
-unsigned int pval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
+unsigned short pval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
 {
-    unsigned int r=0;
+    unsigned short r=0;
     if(b=='@') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
     else if(b=='!') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
-    else if(b=='=') r=(unsigned int)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
+    else if(b=='=') r=(unsigned short)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
     else
     {
         fprintf(stderr,"ERROR: PVAL INPUT");
@@ -149,10 +150,10 @@ unsigned int pval(unsigned char b, unsigned char c, unsigned char d, unsigned ch
     return r;
 }
 
-unsigned int nextiw(unsigned char l1, unsigned char l2)
+unsigned short nextiw(unsigned char l1, unsigned char l2)
 {
     unsigned char b=0,c=0,d=0;
-    unsigned int p=pmempos;
+    unsigned short p=pmempos;
     if(p >= progsize) while(1);
     b=pmem[p++];
     c=pmem[p++];
@@ -163,13 +164,13 @@ unsigned int nextiw(unsigned char l1, unsigned char l2)
         c=d;
         d=pmem[p++];
     }
-    return p-3;
+    return (unsigned short)(p-3);
 }
 
-unsigned int findand(unsigned char l1, unsigned char l2)
+unsigned short findand(unsigned char l1, unsigned char l2)
 {
     unsigned char b=0,c=0,d=0;
-    unsigned int p=0;
+    unsigned short p=0;
     if(p >= filesize) while(1);
     b=pmem[p++];
     c=pmem[p++];
@@ -180,13 +181,13 @@ unsigned int findand(unsigned char l1, unsigned char l2)
         c=d;
         d=pmem[p++];
     }
-    return p-3;
+    return (unsigned short)(p-3);
 }
 
-unsigned int cmd_l(unsigned int ia, unsigned int ib, unsigned int ic)
+unsigned short cmd_l(unsigned int ia, unsigned int ib, unsigned int ic)
 {
     int i;
-    unsigned int r=0;
+    unsigned short r=0;
     unsigned char ta=0,tb=0,tc=0;
     for(i=15;i>=0;i--){
         ta=(ia>>i)%2;
@@ -198,10 +199,10 @@ unsigned int cmd_l(unsigned int ia, unsigned int ib, unsigned int ic)
     return r;
 }
 
-unsigned int cmd_m(unsigned int ia, unsigned int ib, unsigned char c)
+unsigned short cmd_m(unsigned int ia, unsigned int ib, unsigned char c)
 {
     int i;
-    unsigned int r=0;
+    unsigned short r=0;
     unsigned char ta=0,tb=0,c0,c1,c2,c3;
     c0=c%2;
     c1=(c>>1)%2;
