@@ -20,60 +20,10 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
-
-#define MEMSIZE 65536
-#define PROGMEMSIZE 65536
-#define INSIZE 32
-#define RECSIZE 256
-#define SUBMASKSIZE 192
-
-int cmds(unsigned char[INSIZE]);
-unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned int pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned char hextoval(char);
-unsigned int nextiw(unsigned char, unsigned char);
-unsigned int findand(unsigned char, unsigned char);
-unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
-unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
-void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-
-unsigned long progindex;
-unsigned long filesize;
-FILE *myFile;
-unsigned int mem[MEMSIZE];
-unsigned char pmem[PROGMEMSIZE];
-unsigned int rec[RECSIZE];
-unsigned char reccount;
-unsigned char submask[SUBMASKSIZE];
-unsigned char insub;
-unsigned int mempos;
-unsigned int pmempos;
-unsigned int progsize;
-
-const unsigned char argnums[256] = {
-/*    0 1 2 3 4 5 6 7 8 9 A B C D E F     */
-/*0*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*0*/
-/*1*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*1*/
-/*2*/ 0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0, /*2*/
-/*3*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*3*/
-/*4*/ 0,0,0,0,0,0,0,5,10,5,5,0,20,16,2,12, /*4*/
-/*5*/ 12,12,5,21,15,15,15,15,15,15,15,0,0,0,0,0, /*5*/
-/*6*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*6*/
-/*7*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*7*/
-/*8*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*8*/
-/*9*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*9*/
-/*A*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*A*/
-/*B*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*B*/
-/*C*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*C*/
-/*D*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*D*/
-/*E*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*E*/
-/*F*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0  /*F*/
-/*    0 1 2 3 4 5 6 7 8 9 A B C D E F     */
-};
+#ifndef H_MAIN
+#define H_MAIN
+#include "main.h"
+#endif
 
 int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);
