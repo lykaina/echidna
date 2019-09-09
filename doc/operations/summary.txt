@@ -1,9 +1,7 @@
 Operations: (summary)
 Op	Name	Info
-&	sub start	2-hex-label after (no whitespace)
--	endwhile	with 1-uchar-label after (no whitespace)
---	endsub	endwhile with label='-'
-_	endif	1-uchar-label after (no whitespace)
+&	sub start	2-hex-label after
+-	endifwh	1-byte-type {I,W,S} and 1-hex-label or the char '-' after
 G	outi	outputs val as number string in range "0" to "65535".
 H	store	mem[val0] = val1
 I	input	mem[val] = input

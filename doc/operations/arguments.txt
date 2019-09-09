@@ -3,9 +3,7 @@ Operations: (arguments expected)
 [val] supports arg prefixes = and @ and $
 Op	arg1	arg2	arg3	arg4
 &	2-hex-label			
--	1-byte-label			
---				
-_	1-byte-label			
+-	1-byte-type	1-hex-label		
 G	[val]			
 H	[mem]	[val]		
 I	[mem]			
@@ -14,9 +12,9 @@ K
 L	[mem]	[val]	[val]	[val]
 M	[mem]	[val]	[val]	1-hex-logic-op
 N	2-hex-label			
-O	[val]	[val]	1-byte-label	
-P	[val]	[val]	1-byte-label	
-Q	[val]	[val]	1-byte-label	
+O	[val]	[val]	1-byte-type	1-hex-label
+P	[val]	[val]	1-byte-type	1-hex-label
+Q	[val]	[val]	1-byte-type	1-hex-label
 R	[mem]			
 S	[mem]	8-bytes-in-hex		
 T	[mem]	[val]	[val]	

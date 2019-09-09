@@ -26,17 +26,17 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <time.h>
 
 #define MEMSIZE 65536
+#define PROGMEMSIZE 65536
 #define INSIZE 32
 #define RECSIZE 256
 #define SUBMASKSIZE 192
 
-int cmds(unsigned char[INSIZE], unsigned int);
-unsigned char readprog(unsigned long);
+int cmds(unsigned char[INSIZE]);
 unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 unsigned int pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 unsigned char hextoval(char);
-unsigned long nextiw(unsigned char);
-unsigned long findand(unsigned char, unsigned char);
+unsigned int nextiw(unsigned char, unsigned char);
+unsigned int findand(unsigned char, unsigned char);
 unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
 unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
 void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
@@ -45,19 +45,23 @@ unsigned long progindex;
 unsigned long filesize;
 FILE *myFile;
 unsigned int mem[MEMSIZE];
+unsigned char pmem[PROGMEMSIZE];
 unsigned int rec[RECSIZE];
 unsigned char reccount;
 unsigned char submask[SUBMASKSIZE];
 unsigned char insub;
+unsigned int mempos;
+unsigned int pmempos;
+unsigned int progsize;
 
 const unsigned char argnums[256] = {
 /*    0 1 2 3 4 5 6 7 8 9 A B C D E F     */
 /*0*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*0*/
 /*1*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*1*/
-/*2*/ 0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0, /*2*/
+/*2*/ 0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0, /*2*/
 /*3*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*3*/
-/*4*/ 0,0,0,0,0,0,0,5,10,5,5,0,20,16,2,11, /*4*/
-/*5*/ 11,11,5,21,15,15,15,15,15,15,15,0,0,0,0,1, /*5*/
+/*4*/ 0,0,0,0,0,0,0,5,10,5,5,0,20,16,2,12, /*4*/
+/*5*/ 12,12,5,21,15,15,15,15,15,15,15,0,0,0,0,0, /*5*/
 /*6*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*6*/
 /*7*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*7*/
 /*8*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*8*/
@@ -73,7 +77,7 @@ const unsigned char argnums[256] = {
 
 int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);
-  int i,r=0;
+  int i,j,r=0;
   if(argc < 2){
     fprintf(stderr,"A file name is required.\n");
     return 1;
@@ -83,11 +87,14 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   for(i=0;i<MEMSIZE;i++) mem[i]=0;
+  for(i=0;i<PROGMEMSIZE;i++) pmem[i]=0;
   for(i=0;i<RECSIZE;i++) rec[i]=0;
   srand((unsigned int)(clock()%65536));
   reccount=0;
   for(i=0;i<SUBMASKSIZE;i++) submask[i]=0;
   insub=0;
+  pmempos=0;
+  progsize=0;
   unsigned char a[INSIZE],args,w;
   unsigned int wcount;
   char *fMode = "rb";
@@ -101,40 +108,47 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   else{
+    pmempos=0;
     fseek(myFile, 0L, SEEK_END);
     filesize=ftell(myFile);
     rewind(myFile);
-    while((progindex < filesize) && (r==0)){
+    while(progindex < filesize){
         wcount=0;
-        for (i=0;i<INSIZE;i++) a[i]=0;
         fseek(myFile, progindex, SEEK_SET);
         if(progindex < filesize){
             w=(unsigned char)fgetc(myFile);
-            while((w==9)||(w==10)||(w==13)||(w==32)) w=(unsigned char)fgetc(myFile);
-            a[0]=w;
+            while(((w==9)||(w==10)||(w==13)||(w==32))&&(progindex < filesize)){
+                w=(unsigned char)fgetc(myFile);
+            }
+            pmem[pmempos++]=w;
         }
-        args=argnums[a[0]];
+        if(pmempos >= PROGMEMSIZE) return 1;
         progindex=ftell(myFile);
-        if(args!=0){
-          i=1;
-          while((i<=args)&&(progindex < filesize)){
-              w=(unsigned char)fgetc(myFile);
-              while((w==9)||(w==10)||(w==13)||(w==32)) {w=(unsigned char)fgetc(myFile); wcount++;}
-              a[i]=w;
-              i++;
-              progindex=ftell(myFile);
-          }
-        }
         if(progindex > filesize) return 0;
-        r=cmds(a,wcount);
-        if(progindex == filesize) return 0;
     }
     fclose(myFile);
+    progsize=pmempos;
+    pmempos=0;
+    while((pmempos < progsize) && (r==0)){
+        for (i=0;i<INSIZE;i++) a[i]=0;
+        if(pmempos < progsize){
+            a[0]=pmem[pmempos++];
+        }
+        args=argnums[a[0]];
+        if(args!=0){
+          i=1;
+          while((i<=args)&&(pmempos < progsize)){
+              a[i]=pmem[pmempos++];
+              i++;
+          }
+        }
+        r=cmds(a);
+    }
   }
   return 0;
 }
 
-int cmds(unsigned char a[INSIZE], unsigned int wcount){
+int cmds(unsigned char a[INSIZE]){
   int i;
   switch(a[0]){
     case '&': //Used to start a subroutine. Two hex follow. No Whitespace.
@@ -142,12 +156,13 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
         break;
     case '-':
         if(reccount==0) return 3;
-        else progindex=rec[reccount--];
-        if(readprog(progindex)=='-') insub--;
-        break;
-    case '_':
-        if(reccount==0) return 3;
-        else reccount--;
+        if((a[1]=='S')&&(a[2]=='-')){
+            insub--;
+            pmempos=rec[reccount--];
+        }
+        else if(a[1]=='W') pmempos=rec[reccount--];
+        else if(a[1]=='I') reccount--;
+        else return 3;
         break;
     case 'G':
         printf("%u",pval(a[1],a[2],a[3],a[4],a[5]));
@@ -172,27 +187,27 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
         break;
     case 'N':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=progindex;
+        rec[++reccount]=pmempos;
         submask[(insub+1)%SUBMASKSIZE]=hextoval(a[1])*16+hextoval(a[2]);
-        progindex=findand(a[1],a[2]);
+        pmempos=findand(a[1],a[2]);
         break;
     case 'O':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=progindex-12-wcount;
+        rec[++reccount]=pmempos-13;
         if(pval(a[1],a[2],a[3],a[4],a[5])==pval(a[6],a[7],a[8],a[9],a[10]));
-        else progindex=nextiw(a[11]);
+        else pmempos=nextiw(a[11],a[12]);
         break;
     case 'P':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=progindex-12-wcount;
+        rec[++reccount]=pmempos-13;
         if(pval(a[1],a[2],a[3],a[4],a[5])<pval(a[6],a[7],a[8],a[9],a[10]));
-        else progindex=nextiw(a[11]);
+        else pmempos=nextiw(a[11],a[12]);
         break;
     case 'Q':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=progindex-12-wcount;
+        rec[++reccount]=pmempos-13;
         if(pval(a[1],a[2],a[3],a[4],a[5])!=pval(a[6],a[7],a[8],a[9],a[10]));
-        else progindex=nextiw(a[11]);
+        else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=rand()%65536;
@@ -226,17 +241,6 @@ int cmds(unsigned char a[INSIZE], unsigned int wcount){
   }
   return 0;
 }
-
-unsigned char readprog(unsigned long bytepos)
-{
-  unsigned char u;
-  if(bytepos >= filesize) while(1);
-  fseek(myFile, bytepos, SEEK_SET);
-  u=(unsigned char)fgetc(myFile);
-  fseek(myFile, progindex, SEEK_SET);
-  return u;
-}
-
 
 unsigned int mval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
 {
@@ -276,42 +280,38 @@ unsigned char hextoval(char in)
     else return 0;
 }
 
-unsigned long nextiw(unsigned char label)
-{
-    unsigned char b=0,c=0;
-    unsigned long p=progindex;
-    if(p >= filesize) while(1);
-    fseek(myFile, p, SEEK_SET);
-    b=(unsigned char)fgetc(myFile);
-    c=(unsigned char)fgetc(myFile);
-    while(!(((b=='-')||(b=='_'))&&(c==label))){
-        p++;
-        if(p >= filesize) while(1);
-        b=c;
-        c=(unsigned char)fgetc(myFile);
-    }
-    fseek(myFile, progindex, SEEK_SET);
-    return p;
-}
-
-unsigned long findand(unsigned char l1, unsigned char l2)
+unsigned int nextiw(unsigned char l1, unsigned char l2)
 {
     unsigned char b=0,c=0,d=0;
-    unsigned long p=0;
-    if(p >= filesize) while(1);
-    fseek(myFile, p, SEEK_SET);
-    b=(unsigned char)fgetc(myFile);
-    c=(unsigned char)fgetc(myFile);
-    d=(unsigned char)fgetc(myFile);
-    while(!((b=='&')&&(c==l1)&&(d==l2))){
-        p++;
-        if(p >= filesize) while(1);
+    unsigned int p=pmempos;
+    if(p >= progsize) while(1);
+    b=pmem[p++];
+    c=pmem[p++];
+    d=pmem[p++];
+    while(!((b=='-')&&(c==l1)&&(d==l2))){
+        if(p >= progsize) while(1);
         b=c;
         c=d;
-        d=(unsigned char)fgetc(myFile);
+        d=pmem[p++];
     }
-    fseek(myFile, progindex, SEEK_SET);
-    return p;
+    return p-3;
+}
+
+unsigned int findand(unsigned char l1, unsigned char l2)
+{
+    unsigned char b=0,c=0,d=0;
+    unsigned int p=0;
+    if(p >= filesize) while(1);
+    b=pmem[p++];
+    c=pmem[p++];
+    d=pmem[p++];
+    while(!((b=='&')&&(c==l1)&&(d==l2))){
+        if(p >= progsize) while(1);
+        b=c;
+        c=d;
+        d=pmem[p++];
+    }
+    return p-3;
 }
 
 unsigned int cmd_l(unsigned int ia, unsigned int ib, unsigned int ic)

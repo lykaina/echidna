@@ -4,3 +4,4 @@ values are written in 4-hex-big-endian.
 all math is mod 65536
 whitespace ignored
 subroutines end with the "--" op.
+"while" loops do not work right (bug), use an extra "if" at end.
