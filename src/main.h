@@ -40,15 +40,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <time.h>
 #endif
 
+#ifndef H_DEFINES
+#define H_DEFINES
+#include "defines.h"
+#endif
+
 #ifndef H_GLOBALS
 #define H_GLOBALS
 #include "globals.h"
 #endif
 
-#ifndef H_DEFINES
-#define H_DEFINES
-#include "defines.h"
-#endif
 
 int cmds(unsigned char[INSIZE]);
 unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
