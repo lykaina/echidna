@@ -50,13 +50,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "globals.h"
 #endif
 
+#ifndef H_ARGNUMS
+#define H_ARGNUMS
+#include "argnums.h"
+#endif
 
-int cmds(unsigned char[INSIZE]);
-unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned int pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned char hextoval(char);
-unsigned int nextiw(unsigned char, unsigned char);
-unsigned int findand(unsigned char, unsigned char);
-unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
-unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
-void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+#ifndef H_CMDS
+#define H_CMDS
+#include "cmds.h"
+#endif

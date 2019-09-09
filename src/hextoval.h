@@ -20,25 +20,4 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef HC_STDIO
-#define HC_STDIO
-#include <stdio.h>
-#endif
-
-#ifndef H_DEFINES
-#define H_DEFINES
-#include "defines.h"
-#endif
-
-unsigned long progindex;
-unsigned long filesize;
-FILE *myFile;
-unsigned int mem[MEMSIZE];
-unsigned char pmem[PROGMEMSIZE];
-unsigned int rec[RECSIZE];
-unsigned char reccount;
-unsigned char submask[SUBMASKSIZE];
-unsigned char insub;
-unsigned int mempos;
-unsigned int pmempos;
-unsigned int progsize;
+unsigned char hextoval(char);

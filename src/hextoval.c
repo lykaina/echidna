@@ -20,25 +20,16 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef HC_STDIO
-#define HC_STDIO
-#include <stdio.h>
+#ifndef H_HEXTOVAL
+#define H_HEXTOVAL
+#include "hextoval.h"
 #endif
 
-#ifndef H_DEFINES
-#define H_DEFINES
-#include "defines.h"
-#endif
+unsigned char hextoval(char in)
+{
+    if((in>='0')&&(in<='9')) return in-'0';
+    else if((in>='A')&&(in<='F')) return in+10-'A';
+    else if((in>='a')&&(in<='f')) return in+10-'a';
+    else return 0;
+}
 
-unsigned long progindex;
-unsigned long filesize;
-FILE *myFile;
-unsigned int mem[MEMSIZE];
-unsigned char pmem[PROGMEMSIZE];
-unsigned int rec[RECSIZE];
-unsigned char reccount;
-unsigned char submask[SUBMASKSIZE];
-unsigned char insub;
-unsigned int mempos;
-unsigned int pmempos;
-unsigned int progsize;

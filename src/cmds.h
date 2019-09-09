@@ -25,20 +25,36 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <stdio.h>
 #endif
 
+#ifndef HC_STDLIB
+#define HC_STDLIB
+#include <stdlib.h>
+#endif
+
+#ifndef HC_STDBOOL
+#define HC_STDBOOL
+#include <stdbool.h>
+#endif
+
 #ifndef H_DEFINES
 #define H_DEFINES
 #include "defines.h"
 #endif
 
-unsigned long progindex;
-unsigned long filesize;
-FILE *myFile;
-unsigned int mem[MEMSIZE];
-unsigned char pmem[PROGMEMSIZE];
-unsigned int rec[RECSIZE];
-unsigned char reccount;
-unsigned char submask[SUBMASKSIZE];
-unsigned char insub;
-unsigned int mempos;
-unsigned int pmempos;
-unsigned int progsize;
+#ifndef H_GLOBALS
+#define H_GLOBALS
+#include "globals.h"
+#endif
+
+#ifndef H_HEXTOVAL
+#define H_HEXTOVAL
+#include "hextoval.h"
+#endif
+
+int cmds(unsigned char[INSIZE]);
+unsigned int mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned int pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned int nextiw(unsigned char, unsigned char);
+unsigned int findand(unsigned char, unsigned char);
+unsigned int cmd_l(unsigned int, unsigned int, unsigned int);
+unsigned int cmd_m(unsigned int, unsigned int, unsigned char);
+void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
