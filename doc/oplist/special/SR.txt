@@ -1,0 +1,2 @@
+SR	rand	mem[val0] mem[val1]: mem[val0] = random num from 0 to 65535. val1 ignored.
+S	R	[mem]	[mem]		

@@ -1,0 +1,2 @@
+S	special	Reads value from special op a[1] and stores it to a[2-6],a[7-11]
+S	[char]	[mem]	[mem]		

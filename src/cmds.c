@@ -87,11 +87,10 @@ int cmds(unsigned char a[INSIZE]){
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
-        srand((unsigned int)(clock()%65536));
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=rand()%65536;
+        cmd_r(mval(a[1],a[2],a[3],a[4],a[5]),hextoval(a[6])*16+hextoval(a[7]),hextoval(a[8])*16+hextoval(a[9]),hextoval(a[10])*16+hextoval(a[11]),hextoval(a[12])*16+hextoval(a[13]),hextoval(a[14])*16+hextoval(a[15]),hextoval(a[16])*16+hextoval(a[17]),hextoval(a[18])*16+hextoval(a[19]),hextoval(a[20])*16+hextoval(a[21]));
         break;
     case 'S':
-        cmd_s(mval(a[1],a[2],a[3],a[4],a[5]),hextoval(a[6])*16+hextoval(a[7]),hextoval(a[8])*16+hextoval(a[9]),hextoval(a[10])*16+hextoval(a[11]),hextoval(a[12])*16+hextoval(a[13]),hextoval(a[14])*16+hextoval(a[15]),hextoval(a[16])*16+hextoval(a[17]),hextoval(a[18])*16+hextoval(a[19]),hextoval(a[20])*16+hextoval(a[21]));
+        cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]));
         break;
     case 'T':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])+pval(a[11],a[12],a[13],a[14],a[15]))%65536);
@@ -221,7 +220,7 @@ unsigned short cmd_m(unsigned short va, unsigned short vb, unsigned short ia, un
     return r;
 }
 
-void cmd_s(unsigned int addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
+void cmd_r(unsigned short addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
 {
     mem[addr]=a;
     mem[(addr+1)%65536]=b;
@@ -231,4 +230,16 @@ void cmd_s(unsigned int addr, unsigned char a, unsigned char b, unsigned char c,
     mem[(addr+5)%65536]=f;
     mem[(addr+6)%65536]=g;
     mem[(addr+7)%65536]=h;
+}
+
+void cmd_s(unsigned char ci, unsigned short a1, unsigned short a2)
+{
+  //long l;
+  switch(ci){
+    case 'R':
+        srand((unsigned int)(clock()%65536));
+        mem[a1]=rand()%65536;
+        mem[a2]=mem[a2];
+        break;
+  }
 }
