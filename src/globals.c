@@ -20,10 +20,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_GLOBALS
-#define H_GLOBALS
 #include "globals.h"
-#endif
 
 unsigned long progindex;
 unsigned long filesize;

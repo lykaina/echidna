@@ -20,10 +20,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_MAIN
-#define H_MAIN
 #include "main.h"
-#endif
 
 int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);

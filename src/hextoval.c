@@ -20,10 +20,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_HEXTOVAL
-#define H_HEXTOVAL
 #include "hextoval.h"
-#endif
 
 unsigned char hextoval(char in)
 {
