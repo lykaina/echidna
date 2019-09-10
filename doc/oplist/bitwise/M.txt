@@ -1,5 +1,10 @@
 M	bitwise_2bit	mem[val0] = val1 val2 2byte-mask-if-zero-zero 2byte-mask-if-zero-one 2byte-mask-if-one-zero 2byte-mask-if-one-one
-M	[mem]	[val]	[val]	[val]	[val]	[val]	[val]
+M	[mem]	[val]	[val]	[mask]*4
 ----
-Op M Code for "[mem] = [val1] AND [val2]":
-[mem] = [val1] AND [val2]	M [mem] [val1] [val2] =FFFF =0000 =0000 =0000
+Logic Codes:
+[mem] = [val1] NOR [val2]	M [mem] [val1] [val2] =FFFF =0000 =0000 =0000
+[mem] = [val1] XOR [val2]	M [mem] [val1] [val2] =0000 =FFFF =FFFF =0000
+[mem] = [val1] NAND [val2]	M [mem] [val1] [val2] =FFFF =FFFF =FFFF =0000
+[mem] = [val1] AND [val2]	M [mem] [val1] [val2] =0000 =0000 =0000 =FFFF
+[mem] = [val1] XNOR [val2]	M [mem] [val1] [val2] =FFFF =0000 =0000 =FFFF
+[mem] = [val1] OR [val2]	M [mem] [val1] [val2] =0000 =FFFF =FFFF =FFFF
