@@ -9,5 +9,3 @@ I then modified the PC version to use far more memory, eventually loading the fi
 There are 20 Ops, from G - Z.
 
 The interpreter has a known problem with the if/while loops on while mode that i am unsure how to fix.
-
-At the moment, i feel it's lacking in ops, and i think i can be willing to have ops 0-9 and A-F if needed (i wanted to reserve those for hex input).
