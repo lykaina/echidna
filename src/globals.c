@@ -20,24 +20,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef HC_STDIO
-#define HC_STDIO
-#include <stdio.h>
+#ifndef H_GLOBALS
+#define H_GLOBALS
+#include "globals.h"
 #endif
 
-#ifndef H_DEFINES
-#define H_DEFINES
-#include "defines.h"
-#endif
-
-extern unsigned long progindex;
-extern unsigned long filesize;
-extern FILE *myFile;
-extern unsigned short mem[MEMSIZE];
-extern unsigned char pmem[PROGMEMSIZE];
-extern unsigned int rec[RECSIZE];
-extern unsigned char reccount;
-extern unsigned char submask[SUBMASKSIZE];
-extern unsigned char insub;
-extern unsigned short pmempos;
-extern unsigned short progsize;
+unsigned long progindex;
+unsigned long filesize;
+FILE *myFile;
+unsigned short mem[MEMSIZE];
+unsigned char pmem[PROGMEMSIZE];
+unsigned int rec[RECSIZE];
+unsigned char reccount;
+unsigned char submask[SUBMASKSIZE];
+unsigned char insub;
+unsigned short pmempos;
+unsigned short progsize;
