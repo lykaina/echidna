@@ -36,8 +36,8 @@ unsigned short mval(unsigned char, unsigned char, unsigned char, unsigned char, 
 unsigned short pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 unsigned short nextiw(unsigned char, unsigned char);
 unsigned short findand(unsigned char, unsigned char);
-unsigned short cmd_l(unsigned int, unsigned int, unsigned int);
-unsigned short cmd_m(unsigned int, unsigned int, unsigned char);
+unsigned short cmd_l(unsigned short, unsigned short, unsigned short);
+unsigned short cmd_m(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short);
 void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

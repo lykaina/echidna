@@ -57,7 +57,7 @@ int cmds(unsigned char a[INSIZE]){
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=cmd_l(pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]),pval(a[16],a[17],a[18],a[19],a[20]));
         break;
     case 'M': // 2-bit bitwise
-        mem[mval(a[1],a[2],a[3],a[4],a[5])]=cmd_m(pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]),hextoval(a[16]));
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=cmd_m(pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]),pval(a[16],a[17],a[18],a[19],a[20]),pval(a[21],a[22],a[23],a[24],a[25]),pval(a[26],a[27],a[28],a[29],a[30]),pval(a[31],a[32],a[33],a[34],a[35]));
         break;
     case 'N':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
@@ -184,35 +184,39 @@ unsigned short findand(unsigned char l1, unsigned char l2)
     return (unsigned short)(p-3);
 }
 
-unsigned short cmd_l(unsigned int ia, unsigned int ib, unsigned int ic)
+unsigned short cmd_l(unsigned short v, unsigned short ia, unsigned short ib)
 {
     int i;
     unsigned short r=0;
-    unsigned char ta=0,tb=0,tc=0;
+    unsigned char t=0,ta=0,tb=0;
     for(i=15;i>=0;i--){
+        t=(v>>i)%2;
         ta=(ia>>i)%2;
         tb=(ib>>i)%2;
-        tc=(ic>>i)%2;
         r=r<<1;
-        r+=((ta==0)?tb:tc);
+        r+=((t==0)?ta:tb);
     }
     return r;
 }
 
-unsigned short cmd_m(unsigned int ia, unsigned int ib, unsigned char c)
+unsigned short cmd_m(unsigned short va, unsigned short vb, unsigned short ia, unsigned short ib, unsigned short ic, unsigned short id)
 {
     int i;
     unsigned short r=0;
-    unsigned char ta=0,tb=0,c0,c1,c2,c3;
-    c0=c%2;
-    c1=(c>>1)%2;
-    c2=(c>>2)%2;
-    c3=(c>>3)%2;
+    unsigned char t1=0,t2=0,ta=0,tb=0,tc=0,td=0;
     for(i=15;i>=0;i--){
+        t1=(va>>i)%2;
+        t2=(vb>>i)%2;
         ta=(ia>>i)%2;
         tb=(ib>>i)%2;
+        tc=(ic>>i)%2;
+        td=(id>>i)%2;
         r=r<<1;
-        r+=(ta==0)?((tb==0)?c0:c1):((tb==0)?c2:c3);
+        if((t1==0)&&(t2==0)) r+=ta;
+        else if((t1==0)&&(t2==1)) r+=tb;
+        else if((t1==1)&&(t2==0)) r+=tc;
+        else if((t1==1)&&(t2==1)) r+=td;
+        else r+=0;
     }
     return r;
 }
