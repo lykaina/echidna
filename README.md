@@ -7,5 +7,3 @@ I then modified the PC version to use far more memory, eventually loading the fi
 
 ### Notes:
 There are 20 Ops, from G - Z.
-
-The interpreter has a known problem with the if/while loops on while mode that i am unsure how to fix.
