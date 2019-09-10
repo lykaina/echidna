@@ -20,40 +20,16 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef HC_STDIO
-#define HC_STDIO
+#ifndef H_CMDS
+#define H_CMDS
+
 #include <stdio.h>
-#endif
-
-#ifndef HC_STDLIB
-#define HC_STDLIB
 #include <stdlib.h>
-#endif
-
-#ifndef HC_STDBOOL
-#define HC_STDBOOL
 #include <stdbool.h>
-#endif
-
-#ifndef HC_TIME
-#define HC_TIME
 #include <time.h>
-#endif
-
-#ifndef H_DEFINES
-#define H_DEFINES
 #include "defines.h"
-#endif
-
-#ifndef H_GLOBALS
-#define H_GLOBALS
 #include "globals.h"
-#endif
-
-#ifndef H_HEXTOVAL
-#define H_HEXTOVAL
 #include "hextoval.h"
-#endif
 
 int cmds(unsigned char[INSIZE]);
 unsigned short mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
@@ -63,3 +39,5 @@ unsigned short findand(unsigned char, unsigned char);
 unsigned short cmd_l(unsigned int, unsigned int, unsigned int);
 unsigned short cmd_m(unsigned int, unsigned int, unsigned char);
 void cmd_s(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+
+#endif

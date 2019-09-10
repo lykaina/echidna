@@ -20,15 +20,11 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef HC_STDIO
-#define HC_STDIO
-#include <stdio.h>
-#endif
+#ifndef H_GLOBALS
+#define H_GLOBALS
 
-#ifndef H_DEFINES
-#define H_DEFINES
+#include <stdio.h>
 #include "defines.h"
-#endif
 
 extern unsigned long progindex;
 extern unsigned long filesize;
@@ -41,3 +37,5 @@ extern unsigned char submask[SUBMASKSIZE];
 extern unsigned char insub;
 extern unsigned short pmempos;
 extern unsigned short progsize;
+
+#endif
