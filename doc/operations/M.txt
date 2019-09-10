@@ -1,5 +1,6 @@
 M	bitwise_2bit	mem[val0] = val1 val2 1-hex-logic-code
 M	[mem]	[val]	[val]	1-hex-logic-op
+----
 Commonly-Used Logic Codes for M:
 Logic Code	Bitwise Meaning
 1	val1 NOR val2

@@ -1,5 +1,6 @@
 L	bitwise_1bit	mem[val0] = val1 2byte-mask-if-zero 2byte-mask-if-one
 L	[mem]	[val]	[val]	[val]
+----
 How L works [in C-like code]: (section may need rewrite)
 arg1=0;
 for(n=15;n>=0;n--) {
