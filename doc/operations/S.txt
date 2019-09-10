@@ -1,0 +1,2 @@
+S	load	mem[val0] to mem[val0 + 7] <- 8-bytes-in-hex
+S	[mem]	8-bytes-in-hex		

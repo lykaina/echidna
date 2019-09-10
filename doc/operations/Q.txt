@@ -1,0 +1,2 @@
+Q	ifwh_ne	if/while val0 != val1 1-uchar-label
+Q	[val]	[val]	1-byte-type	1-hex-label

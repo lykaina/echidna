@@ -1,0 +1,2 @@
+J	outc	outputs val%256 as a single char.
+J	[val]			

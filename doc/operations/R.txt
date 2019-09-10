@@ -1,0 +1,2 @@
+R	rand	mem[val] = random num from 0 to 65535
+R	[mem]			

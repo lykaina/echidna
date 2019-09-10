@@ -1,0 +1,2 @@
+H	store	mem[val0] = val1
+H	[mem]	[val]		
