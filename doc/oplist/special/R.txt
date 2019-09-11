@@ -1,0 +1,2 @@
+R	special1	Reads values from special1 op a[1] and values a[7-11] and a[12-16], storing it to a[2-6].
+R	[char]	[mem]	[val]	[val]	

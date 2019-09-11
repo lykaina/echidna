@@ -38,7 +38,8 @@ unsigned short nextiw(unsigned char, unsigned char);
 unsigned short findand(unsigned char, unsigned char);
 unsigned short cmd_l(unsigned short, unsigned short, unsigned short);
 unsigned short cmd_m(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short);
-void cmd_r(unsigned short, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+void cmd_g(unsigned short, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+void cmd_r(unsigned char, unsigned short, unsigned short, unsigned short);
 void cmd_s(unsigned char, unsigned short, unsigned short);
 
 #endif

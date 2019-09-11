@@ -39,7 +39,7 @@ int cmds(unsigned char a[INSIZE]){
         else return 3;
         break;
     case 'G':
-        printf("%u",pval(a[1],a[2],a[3],a[4],a[5]));
+        cmd_g(mval(a[1],a[2],a[3],a[4],a[5]),hextoval(a[6])*16+hextoval(a[7]),hextoval(a[8])*16+hextoval(a[9]),hextoval(a[10])*16+hextoval(a[11]),hextoval(a[12])*16+hextoval(a[13]),hextoval(a[14])*16+hextoval(a[15]),hextoval(a[16])*16+hextoval(a[17]),hextoval(a[18])*16+hextoval(a[19]),hextoval(a[20])*16+hextoval(a[21]));
         break;
     case 'H':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=pval(a[6],a[7],a[8],a[9],a[10]);
@@ -87,7 +87,7 @@ int cmds(unsigned char a[INSIZE]){
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
-        cmd_r(mval(a[1],a[2],a[3],a[4],a[5]),hextoval(a[6])*16+hextoval(a[7]),hextoval(a[8])*16+hextoval(a[9]),hextoval(a[10])*16+hextoval(a[11]),hextoval(a[12])*16+hextoval(a[13]),hextoval(a[14])*16+hextoval(a[15]),hextoval(a[16])*16+hextoval(a[17]),hextoval(a[18])*16+hextoval(a[19]),hextoval(a[20])*16+hextoval(a[21]));
+        cmd_r(a[1],mval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]));
         break;
     case 'S':
         cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]));
@@ -183,6 +183,18 @@ unsigned short findand(unsigned char l1, unsigned char l2)
     return (unsigned short)(p-3);
 }
 
+void cmd_g(unsigned short addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
+{
+    mem[addr]=a;
+    mem[(addr+1)%65536]=b;
+    mem[(addr+2)%65536]=c;
+    mem[(addr+3)%65536]=d;
+    mem[(addr+4)%65536]=e;
+    mem[(addr+5)%65536]=f;
+    mem[(addr+6)%65536]=g;
+    mem[(addr+7)%65536]=h;
+}
+
 unsigned short cmd_l(unsigned short v, unsigned short ia, unsigned short ib)
 {
     int i;
@@ -220,31 +232,30 @@ unsigned short cmd_m(unsigned short va, unsigned short vb, unsigned short ia, un
     return r;
 }
 
-void cmd_r(unsigned short addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
+
+void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short p2)
 {
-    mem[addr]=a;
-    mem[(addr+1)%65536]=b;
-    mem[(addr+2)%65536]=c;
-    mem[(addr+3)%65536]=d;
-    mem[(addr+4)%65536]=e;
-    mem[(addr+5)%65536]=f;
-    mem[(addr+6)%65536]=g;
-    mem[(addr+7)%65536]=h;
+  switch(ci){
+    case 'G':
+        printf("<%u>",p1);
+        break;
+  }
 }
 
-void cmd_s(unsigned char ci, unsigned short a1, unsigned short a2)
+void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2)
 {
-  long t;
+  long r,t;
   switch(ci){
     case 'R':
-        srand((unsigned int)(clock()%65536));
-        mem[a1]=rand()%65536;
-        mem[a2]=mem[a2];
+        srand(clock());
+        r=rand();
+        mem[m1]=(unsigned short)(r%(1<<16));
+        mem[m2]=(unsigned short)(r>>16);
         break;
     case 'T':
         t=time(NULL);
-        mem[a1]=(unsigned short)(t%65536);
-        mem[a2]=(unsigned short)(t/65536);
+        mem[m1]=(unsigned short)(t%65536);
+        mem[m2]=(unsigned short)(t/65536);
         break;
   }
 }

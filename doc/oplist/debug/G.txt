@@ -1,2 +1,0 @@
-G	outi	outputs val as number string in range "0" to "65535".
-G	[val]			
