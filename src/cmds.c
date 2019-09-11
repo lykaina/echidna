@@ -237,7 +237,7 @@ void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short
 {
   switch(ci){
     case 'G':
-        printf("<%u>",p1);
+        printf("%u",p1);
         break;
   }
 }
