@@ -234,12 +234,17 @@ void cmd_r(unsigned short addr, unsigned char a, unsigned char b, unsigned char 
 
 void cmd_s(unsigned char ci, unsigned short a1, unsigned short a2)
 {
-  //long l;
+  long t;
   switch(ci){
     case 'R':
         srand((unsigned int)(clock()%65536));
         mem[a1]=rand()%65536;
         mem[a2]=mem[a2];
+        break;
+    case 'T':
+        t=time(NULL);
+        mem[a1]=(unsigned short)(t%65536);
+        mem[a2]=(unsigned short)(t/65536);
         break;
   }
 }
