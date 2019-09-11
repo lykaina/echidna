@@ -237,10 +237,16 @@ void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short
 {
   switch(ci){
     case 'G':
-        printf("%u",p1);
+        printf("%lu",p1+p2*65536);
         break;
     case 'H':
-        printf("%lu",p1+p2*65536);
+        mem[m]=((p1+p2*65536)/3600)%24;
+        break;
+    case 'M':
+        mem[m]=((p1+p2*65536)/60)%60;
+        break;
+    case 'S':
+        mem[m]=(p1+p2*65536)%60;
         break;
   }
 }
