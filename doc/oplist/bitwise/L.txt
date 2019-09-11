@@ -1,5 +1,2 @@
 L	bitwise_1bit	mem[val0] = val1 2byte-mask-if-zero 2byte-mask-if-one
 L	[mem]	[val]	[mask]	[mask]
-----
-Logic Codes:
-[mem] = NOT [val]	L [mem] [val] =FFFF =0000
