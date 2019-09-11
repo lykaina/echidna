@@ -90,7 +90,7 @@ int cmds(unsigned char a[INSIZE]){
         cmd_r(a[1],mval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]));
         break;
     case 'S':
-        cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]));
+        cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]));
         break;
     case 'T':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])+pval(a[11],a[12],a[13],a[14],a[15]))%65536);
@@ -245,7 +245,7 @@ void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short
   }
 }
 
-void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2)
+void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned short p)
 {
   long r,t;
   switch(ci){

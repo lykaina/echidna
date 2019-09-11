@@ -1,2 +1,2 @@
 ST	time	mem[val(low)] mem[val(high)] <- 32 bit Unix Time
-ST		[mem]	[mem]	
+ST		[mem]	[mem]	[nullval]

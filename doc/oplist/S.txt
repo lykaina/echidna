@@ -1,0 +1,2 @@
+S	special2	Reads value from special op a[1] and value a[12-16] and stores it to a[2-6],a[7-11]
+S	[char]	[mem]	[mem]	[val]
