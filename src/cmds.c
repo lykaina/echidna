@@ -239,6 +239,9 @@ void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short
     case 'G':
         printf("%u",p1);
         break;
+    case 'H':
+        printf("%lu",p1+p2*65536);
+        break;
   }
 }
 
