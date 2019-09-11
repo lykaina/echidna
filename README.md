@@ -7,3 +7,5 @@ I then modified the PC version to use far more memory, eventually loading the fi
 
 ### Notes:
 There are 20 Ops, from G - Z.
+
+Ops R and S each call up to 20 "Special" Ops, which are hardcoded functions that provide non-essential input and output.
