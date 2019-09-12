@@ -20,16 +20,16 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_MAIN
-#define H_MAIN
+#ifndef H_CMDS__CMD_G
+#define H_CMDS__CMD_G
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <time.h>
-#include "defines.h"
-#include "globals.h"
-#include "argnums.h"
-#include "cmds.h"
+#include "../defines.h"
+#include "../globals.h"
+#include "../hextoval.h"
+
+void cmd_g(unsigned short, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

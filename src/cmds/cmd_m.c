@@ -20,26 +20,26 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMD
-#define H_CMD
+#include "cmd_m.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
-#include "defines.h"
-#include "globals.h"
-#include "hextoval.h"
-
-int cmds(unsigned char[INSIZE]);
-unsigned short mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned short pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-unsigned short nextiw(unsigned char, unsigned char);
-unsigned short findand(unsigned char, unsigned char);
-unsigned short cmd_l(unsigned short, unsigned short, unsigned short);
-unsigned short cmd_m(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short);
-void cmd_g(unsigned short, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
-void cmd_r(unsigned char, unsigned short, unsigned short, unsigned short, unsigned short);
-void cmd_s(unsigned char, unsigned short, unsigned short, unsigned short, unsigned short);
-
-#endif
+unsigned short cmd_m(unsigned short va, unsigned short vb, unsigned short ia, unsigned short ib, unsigned short ic, unsigned short id)
+{
+    int i;
+    unsigned short r=0;
+    unsigned char t1=0,t2=0,ta=0,tb=0,tc=0,td=0;
+    for(i=15;i>=0;i--){
+        t1=(va>>i)%2;
+        t2=(vb>>i)%2;
+        ta=(ia>>i)%2;
+        tb=(ib>>i)%2;
+        tc=(ic>>i)%2;
+        td=(id>>i)%2;
+        r=r<<1;
+        if((t1==0)&&(t2==0)) r+=ta;
+        else if((t1==0)&&(t2==1)) r+=tb;
+        else if((t1==1)&&(t2==0)) r+=tc;
+        else if((t1==1)&&(t2==1)) r+=td;
+        else r+=0;
+    }
+    return r;
+}

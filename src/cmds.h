@@ -20,8 +20,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_MAIN
-#define H_MAIN
+#ifndef H_CMDS
+#define H_CMDS
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +29,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <time.h>
 #include "defines.h"
 #include "globals.h"
-#include "argnums.h"
-#include "cmds.h"
+#include "hextoval.h"
+#include "cmds/cmd_g.h"
+#include "cmds/cmd_l.h"
+#include "cmds/cmd_m.h"
+#include "cmds/cmd_r.h"
+#include "cmds/cmd_s.h"
+
+
+
+int cmds(unsigned char[INSIZE]);
+unsigned short mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned short pval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
+unsigned short nextiw(unsigned char, unsigned char);
+unsigned short findand(unsigned char, unsigned char);
 
 #endif

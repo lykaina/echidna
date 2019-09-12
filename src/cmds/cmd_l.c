@@ -20,16 +20,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_MAIN
-#define H_MAIN
+#include "cmd_l.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
-#include "defines.h"
-#include "globals.h"
-#include "argnums.h"
-#include "cmds.h"
-
-#endif
+unsigned short cmd_l(unsigned short v, unsigned short ia, unsigned short ib)
+{
+    int i;
+    unsigned short r=0;
+    unsigned char t=0,ta=0,tb=0;
+    for(i=15;i>=0;i--){
+        t=(v>>i)%2;
+        ta=(ia>>i)%2;
+        tb=(ib>>i)%2;
+        r=r<<1;
+        r+=((t==0)?ta:tb);
+    }
+    return r;
+}

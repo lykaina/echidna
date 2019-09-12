@@ -20,16 +20,17 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_MAIN
-#define H_MAIN
+#include "cmd_g.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
-#include "defines.h"
-#include "globals.h"
-#include "argnums.h"
-#include "cmds.h"
+void cmd_g(unsigned short addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
+{
+    mem[addr]=a;
+    mem[(addr+1)%65536]=b;
+    mem[(addr+2)%65536]=c;
+    mem[(addr+3)%65536]=d;
+    mem[(addr+4)%65536]=e;
+    mem[(addr+5)%65536]=f;
+    mem[(addr+6)%65536]=g;
+    mem[(addr+7)%65536]=h;
+}
 
-#endif

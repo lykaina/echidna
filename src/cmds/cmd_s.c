@@ -20,16 +20,22 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_MAIN
-#define H_MAIN
+#include "cmd_s.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
-#include "defines.h"
-#include "globals.h"
-#include "argnums.h"
-#include "cmds.h"
-
-#endif
+void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned short p1, unsigned short p2)
+{
+  long r,t;
+  switch(ci){
+    case 'R':
+        srand(clock());
+        r=(rand())%(p1+p2*65536);
+        mem[m1]=(unsigned short)(r%(1<<16));
+        mem[m2]=(unsigned short)(r>>16);
+        break;
+    case 'T':
+        t=time(NULL);
+        mem[m1]=(unsigned short)(t%65536);
+        mem[m2]=(unsigned short)(t/65536);
+        break;
+  }
+}

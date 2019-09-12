@@ -20,7 +20,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "cmd.h"
+#include "cmds.h"
 
 int cmds(unsigned char a[INSIZE]){
   int i;
@@ -181,90 +181,4 @@ unsigned short findand(unsigned char l1, unsigned char l2)
         d=pmem[p++];
     }
     return (unsigned short)(p-3);
-}
-
-void cmd_g(unsigned short addr, unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h)
-{
-    mem[addr]=a;
-    mem[(addr+1)%65536]=b;
-    mem[(addr+2)%65536]=c;
-    mem[(addr+3)%65536]=d;
-    mem[(addr+4)%65536]=e;
-    mem[(addr+5)%65536]=f;
-    mem[(addr+6)%65536]=g;
-    mem[(addr+7)%65536]=h;
-}
-
-unsigned short cmd_l(unsigned short v, unsigned short ia, unsigned short ib)
-{
-    int i;
-    unsigned short r=0;
-    unsigned char t=0,ta=0,tb=0;
-    for(i=15;i>=0;i--){
-        t=(v>>i)%2;
-        ta=(ia>>i)%2;
-        tb=(ib>>i)%2;
-        r=r<<1;
-        r+=((t==0)?ta:tb);
-    }
-    return r;
-}
-
-unsigned short cmd_m(unsigned short va, unsigned short vb, unsigned short ia, unsigned short ib, unsigned short ic, unsigned short id)
-{
-    int i;
-    unsigned short r=0;
-    unsigned char t1=0,t2=0,ta=0,tb=0,tc=0,td=0;
-    for(i=15;i>=0;i--){
-        t1=(va>>i)%2;
-        t2=(vb>>i)%2;
-        ta=(ia>>i)%2;
-        tb=(ib>>i)%2;
-        tc=(ic>>i)%2;
-        td=(id>>i)%2;
-        r=r<<1;
-        if((t1==0)&&(t2==0)) r+=ta;
-        else if((t1==0)&&(t2==1)) r+=tb;
-        else if((t1==1)&&(t2==0)) r+=tc;
-        else if((t1==1)&&(t2==1)) r+=td;
-        else r+=0;
-    }
-    return r;
-}
-
-
-void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short p2, unsigned short p3)
-{
-  switch(ci){
-    case 'G':
-        printf("%lu",p1+p2*65536);
-        break;
-    case 'H':
-        mem[m]=((p1+p2*65536)/3600)%24;
-        break;
-    case 'M':
-        mem[m]=((p1+p2*65536)/60)%60;
-        break;
-    case 'S':
-        mem[m]=(p1+p2*65536)%60;
-        break;
-  }
-}
-
-void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned short p1, unsigned short p2)
-{
-  long r,t;
-  switch(ci){
-    case 'R':
-        srand(clock());
-        r=(rand())%(p1+p2*65536);
-        mem[m1]=(unsigned short)(r%(1<<16));
-        mem[m2]=(unsigned short)(r>>16);
-        break;
-    case 'T':
-        t=time(NULL);
-        mem[m1]=(unsigned short)(t%65536);
-        mem[m2]=(unsigned short)(t/65536);
-        break;
-  }
 }
