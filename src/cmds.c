@@ -87,10 +87,10 @@ int cmds(unsigned char a[INSIZE]){
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
-        cmd_r(a[1],mval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]));
+        cmd_r(a[1],mval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]),pval(a[17],a[18],a[19],a[20],a[21]));
         break;
     case 'S':
-        cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]));
+        cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]),pval(a[17],a[18],a[19],a[20],a[21]));
         break;
     case 'T':
         mem[mval(a[1],a[2],a[3],a[4],a[5])]=(unsigned short)((pval(a[6],a[7],a[8],a[9],a[10])+pval(a[11],a[12],a[13],a[14],a[15]))%65536);
@@ -233,7 +233,7 @@ unsigned short cmd_m(unsigned short va, unsigned short vb, unsigned short ia, un
 }
 
 
-void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short p2)
+void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short p2, unsigned short p3)
 {
   switch(ci){
     case 'G':
@@ -251,7 +251,7 @@ void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short
   }
 }
 
-void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned short p)
+void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned short p1, unsigned short p2)
 {
   long r,t;
   switch(ci){

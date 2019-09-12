@@ -1,2 +1,2 @@
 RH	hours	stores hours place in time value (val1+val2*65536) to mem.
-RH		[mem]	[val]	[val]
+RH	[mem]	[val]	[val]	[nullval]
