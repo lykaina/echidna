@@ -257,7 +257,7 @@ void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned shor
   switch(ci){
     case 'R':
         srand(clock());
-        r=rand();
+        r=(rand())%(p1+p2*65536);
         mem[m1]=(unsigned short)(r%(1<<16));
         mem[m2]=(unsigned short)(r>>16);
         break;
