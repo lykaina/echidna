@@ -24,18 +24,53 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned short p1, unsigned short p2)
 {
-  long r,t;
+  unsigned long l;
   switch(ci){
     case 'R':
         srand(clock());
-        r=(rand())%(p1+p2*65536);
-        mem[m1]=(unsigned short)(r%(1<<16));
-        mem[m2]=(unsigned short)(r>>16);
+        l=(rand())%(p1+p2*65536);
+        mem[m1]=(unsigned short)(l%(1<<16));
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'K':
+        l=time(NULL);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
         break;
     case 'T':
-        t=time(NULL);
-        mem[m1]=(unsigned short)(t%65536);
-        mem[m2]=(unsigned short)(t/65536);
+        l=(mem[m1]+mem[m2]*65536)+(p1+p2*65536);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'U':
+        l=(mem[m1]+mem[m2]*65536)-(p1+p2*65536);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'V':
+        l=(mem[m1]+mem[m2]*65536)*(p1+p2*65536);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'W':
+        l=(mem[m1]+mem[m2]*65536)/(p1+p2*65536);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'X':
+        l=(mem[m1]+mem[m2]*65536)%(p1+p2*65536);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'Y':
+        l=(mem[m1]+mem[m2]*65536)<<((p1+p2*65536)%32);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
+    case 'Z':
+        l=(mem[m1]+mem[m2]*65536)>>((p1+p2*65536)%32);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
         break;
   }
 }

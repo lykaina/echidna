@@ -1,2 +1,2 @@
-ST	time	mem[val(low)] mem[val(high)] <- 32 bit Unix Time
-ST	[mem]	[mem]	[nullval]	[nullval]
+ST	2add	{mem[val1(low)] mem[val1(high)]} = {mem[val1(low)] mem[val1(high)} + {val2(low) val2(high)}
+ST	[mem]	[mem]	[val]	[val]

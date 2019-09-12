@@ -28,14 +28,5 @@ void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short
     case 'G':
         printf("%lu",p1+p2*65536);
         break;
-    case 'H':
-        mem[m]=((p1+p2*65536)/3600)%24;
-        break;
-    case 'M':
-        mem[m]=((p1+p2*65536)/60)%60;
-        break;
-    case 'S':
-        mem[m]=(p1+p2*65536)%60;
-        break;
   }
 }

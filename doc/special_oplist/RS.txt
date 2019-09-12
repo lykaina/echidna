@@ -1,2 +1,0 @@
-RS	seconds	stores seconds place in time value (val1+val2*65536) to mem.
-RS	[mem]	[val]	[val]	[nullval]
