@@ -1,2 +1,2 @@
 Q	ifwh_ne	if/while val0 != val1 {I,W} 1-uchar-label
-Q	[val]	[val]	1-uchar-type	1-uchar-label
+Q	[val]	[val]	{I,W}	1-uchar-label

@@ -1,7 +1,7 @@
 65536 x 2-byte unsigned data memory "mem"
 65536 x 1-byte unsigned program memory "pmem"
 256 x 4-byte unsigned loop nesting memory "rec" (used in ops: N, O, P, Q, - )
-1-byte counter for loop nesting memory "reccount"
+1 x 1-byte counter for loop nesting memory "reccount"
 64 KiB max program file size (excluding whitespace)
 ----
 Memory Notation:

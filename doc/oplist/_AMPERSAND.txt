@@ -1,2 +1,2 @@
-&	sub start	2-hex-label after
+&	sub start	2-hex-label
 &	2-hex-label			
