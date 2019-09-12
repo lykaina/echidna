@@ -30,6 +30,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "defines.h"
 #include "globals.h"
 #include "argnums.h"
-#include "cmds.h"
+#include "cmd.h"
 
 #endif

@@ -20,8 +20,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
+#ifndef H_CMD
+#define H_CMD
 
 #include <stdio.h>
 #include <stdlib.h>
