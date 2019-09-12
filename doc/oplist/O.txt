@@ -1,2 +1,2 @@
-O	ifwh_eq	if/while val0 == val1 1-uchar-label
-O	[val]	[val]	1-byte-type	1-hex-label
+O	ifwh_eq	if/while val0 == val1 {I,W} 1-uchar-label
+O	[val]	[val]	1-uchar-type	1-uchar-label
