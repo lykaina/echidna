@@ -26,15 +26,15 @@ void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned shor
 {
   unsigned long l;
   switch(ci){
+    case 'K':
+        l=time(NULL);
+        mem[m1]=(unsigned short)(l%65536);
+        mem[m2]=(unsigned short)(l>>16);
+        break;
     case 'R':
         srand(clock());
         l=(rand())%(p1+p2*65536);
         mem[m1]=(unsigned short)(l%(1<<16));
-        mem[m2]=(unsigned short)(l>>16);
-        break;
-    case 'K':
-        l=time(NULL);
-        mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
     case 'T':

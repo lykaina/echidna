@@ -1,0 +1,2 @@
+RI	outu	outputs val1 as number string in range "0" to "65556".
+RI	[val]	[nullval]	[nullval]	[nullval]

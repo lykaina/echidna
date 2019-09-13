@@ -1,0 +1,2 @@
+RH	outli	outputs val1+val2*65536 as number string in range "-2^31" to "2^31-1".
+RH	[val]	[val]	[nullval]	[nullval]

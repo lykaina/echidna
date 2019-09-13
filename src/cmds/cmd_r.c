@@ -22,11 +22,20 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "cmd_r.h"
 
-void cmd_r(unsigned char ci, unsigned short m, unsigned short p1, unsigned short p2, unsigned short p3)
+void cmd_r(unsigned char ci, unsigned short p1, unsigned short p2, unsigned short p3, unsigned short p4)
 {
   switch(ci){
     case 'G':
         printf("%lu",p1+p2*65536);
+        break;
+    case 'H':
+        printf("%li",p1+p2*65536);
+        break;
+    case 'I':
+        printf("%i",p1);
+        break;
+    case 'J':
+        printf("%u",p1);
         break;
   }
 }

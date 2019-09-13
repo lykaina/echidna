@@ -1,0 +1,2 @@
+RI	outi	outputs val1 as number string in range "-32768" to "32767".
+RI	[val]	[nullval]	[nullval]	[nullval]

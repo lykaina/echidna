@@ -1,2 +1,2 @@
-S	special2	Runs special2 op a[1], reads values a[12-16] and a[17-21], and stores output to a[2-6],a[7-11]
-S	[char]	[mem]	[mem]	[val]	[val]
+S	special	Runs special op a[1], reads values a[12-16] and a[17-21], and stores output to a[2-6],a[7-11]
+S	[char]	[mem]	[mem]	[val] [val]

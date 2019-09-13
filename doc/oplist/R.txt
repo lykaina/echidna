@@ -1,2 +1,2 @@
-R	special1	Runs special1 op a[1], reads values a[7-11], a[12-16], and a[17-21], and stores output to a[2-6].
-R	[char]	[mem]	[val]	[val]	[val]
+R	format	Runs formatted op a[1], reads values a[2-6], a[7-11], a[12-16], and a[17-21].
+R	[char]	[val]	[val]	[val] [val]

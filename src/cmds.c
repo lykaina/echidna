@@ -87,7 +87,7 @@ int cmds(unsigned char a[INSIZE]){
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
-        cmd_r(a[1],mval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]),pval(a[17],a[18],a[19],a[20],a[21]));
+        cmd_r(a[1],pval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]),pval(a[17],a[18],a[19],a[20],a[21]));
         break;
     case 'S':
         cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]),pval(a[17],a[18],a[19],a[20],a[21]));
