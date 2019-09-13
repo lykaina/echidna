@@ -1,2 +1,2 @@
-R	format	Runs formatted op a[1], reads values a[2-6], a[7-11], a[12-16], and a[17-21].
-R	[char]	[val]	[val]	[val] [val]
+R	return	Returns from a subroutine.
+R				

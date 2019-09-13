@@ -4,4 +4,3 @@ values are written in 4-hex-big-endian.
 2-word addresses are written low,high
 all math is mod 65536
 whitespace ignored
-subroutines end with the "-S-" op sequence.

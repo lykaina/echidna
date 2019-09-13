@@ -1,0 +1,2 @@
+SI	outi	outputs val1 as number string in range "-32768" to "32767".
+SI	[nullmem]	[nullmem]	[val]	[nullval]

@@ -1,2 +1,2 @@
--	endifwh	1-byte-type {I,W,S} and 1-uchar-label or the char '-' after
--	{I,W,S}	1-uchar-label		
+-	endifwh	1-byte-type {I,W} and 1-uchar-label
+-	{I,W}	1-uchar-label		
