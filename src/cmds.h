@@ -33,7 +33,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "cmds/cmd_g.h"
 #include "cmds/cmd_l.h"
 #include "cmds/cmd_m.h"
-#include "cmds/cmd_r.h"
 #include "cmds/cmd_s.h"
 
 

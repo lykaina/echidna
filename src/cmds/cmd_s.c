@@ -26,6 +26,18 @@ void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned shor
 {
   unsigned long l;
   switch(ci){
+    case 'G':
+        printf("%lu",p1+p2*65536);
+        break;
+    case 'H':
+        printf("%li",p1+p2*65536);
+        break;
+    case 'I':
+        printf("%i",p1);
+        break;
+    case 'J':
+        printf("%u",p1);
+        break;
     case 'K':
         l=time(NULL);
         mem[m1]=(unsigned short)(l%65536);
