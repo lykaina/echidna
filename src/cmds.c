@@ -24,6 +24,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 int cmds(unsigned char a[INSIZE]){
   int i;
+  //int di;
+  //for (di=0;di < INSIZE;di++) fputc(a[di],stderr);
   switch(a[0]){
     case '&': //Used to start a subroutine. Two hex follow. No Whitespace.
         insub++;
@@ -65,21 +67,24 @@ int cmds(unsigned char a[INSIZE]){
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
         rec[++reccount]=pmempos-13;
         if(pval(a[1],a[2],a[3],a[4],a[5])==pval(a[6],a[7],a[8],a[9],a[10]));
-        else if(a[11]=='W') pmempos=nextiw(a[11],a[12])+3;
+        else if(a[11]=='W'){pmempos=nextiw(a[11],a[12])+3;reccount--;}
+        //else if(a[11]=='W') pmempos=nextiw(a[11],a[12])+3;
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'P':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
         rec[++reccount]=pmempos-13;
         if(pval(a[1],a[2],a[3],a[4],a[5])<pval(a[6],a[7],a[8],a[9],a[10]));
-        else if(a[11]=='W') pmempos=nextiw(a[11],a[12])+3;
+        else if(a[11]=='W'){pmempos=nextiw(a[11],a[12])+3;reccount--;}
+        //else if(a[11]=='W') pmempos=nextiw(a[11],a[12])+3;
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'Q':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
         rec[++reccount]=pmempos-13;
         if(pval(a[1],a[2],a[3],a[4],a[5])!=pval(a[6],a[7],a[8],a[9],a[10]));
-        else if(a[11]=='W') pmempos=nextiw(a[11],a[12])+3;
+        else if(a[11]=='W'){pmempos=nextiw(a[11],a[12])+3;reccount--;}
+        //else if(a[11]=='W') pmempos=nextiw(a[11],a[12])+3;
         else pmempos=nextiw(a[11],a[12]);
         break;
     case 'R':
@@ -113,6 +118,7 @@ int cmds(unsigned char a[INSIZE]){
     default:
         return 2;
   }
+  //for(di=0;di<64;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
   return 0;
 }
 
