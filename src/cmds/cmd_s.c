@@ -27,16 +27,16 @@ void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned shor
   unsigned long l;
   switch(ci){
     case 'G':
-        printf("%lu",p1+p2*65536);
+        printf("%lu",(long unsigned)(p1+p2*65536));
         break;
     case 'H':
-        printf("%li",p1+p2*65536);
+        printf("%li",(long)(p1+p2*65536));
         break;
     case 'I':
-        printf("%i",p1);
+        printf("%i",(int)p1);
         break;
     case 'J':
-        printf("%u",p1);
+        printf("%u",(unsigned int)p1);
         break;
     case 'K':
         l=time(NULL);

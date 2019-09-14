@@ -26,6 +26,7 @@ int cmds(unsigned char a[INSIZE]){
   int i;
   int di;
   if(dbg==1) for(di=0;di < INSIZE;di++) fputc(a[di],stderr);
+  if(dbg==1) for(di=0;di<DEBUGSIZE;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
   switch(a[0]){
     case '&': //Used to start a subroutine. Two hex follow. No Whitespace.
         insub++;
@@ -118,6 +119,5 @@ int cmds(unsigned char a[INSIZE]){
     default:
         return 2;
   }
-  if(dbg==1) for(di=0;di<96;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
   return 0;
 }
