@@ -33,6 +33,8 @@ extern unsigned short mem[MEMSIZE];
 extern unsigned char pmem[PROGMEMSIZE];
 extern unsigned int rec[RECSIZE];
 extern unsigned char reccount;
+extern unsigned int srec[SRECSIZE];
+extern unsigned char sreccount;
 extern unsigned char submask[SUBMASKSIZE];
 extern unsigned char insub;
 extern unsigned short pmempos;

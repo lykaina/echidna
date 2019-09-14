@@ -60,7 +60,7 @@ int cmds(unsigned char a[INSIZE]){
         break;
     case 'N':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=pmempos;
+        srec[++sreccount]=pmempos;
         submask[(insub+1)%SUBMASKSIZE]=hextoval(a[1])*16+hextoval(a[2]);
         pmempos=findand(a[1],a[2]);
         break;
@@ -90,7 +90,7 @@ int cmds(unsigned char a[INSIZE]){
         break;
     case 'R':
         insub--;
-        pmempos=rec[reccount--];
+        pmempos=srec[sreccount--];
         break;
     case 'S':
         cmd_s(a[1],mval(a[2],a[3],a[4],a[5],a[6]),mval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]),pval(a[17],a[18],a[19],a[20],a[21]));

@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
   for(i=0;i<MEMSIZE;i++) mem[i]=0;
   for(i=0;i<PROGMEMSIZE;i++) pmem[i]=0;
   for(i=0;i<RECSIZE;i++) rec[i]=0;
+  for(i=0;i<SRECSIZE;i++) srec[i]=0;
   reccount=0;
   for(i=0;i<SUBMASKSIZE;i++) submask[i]=0;
   insub=0;
