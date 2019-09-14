@@ -33,3 +33,4 @@ unsigned char submask[SUBMASKSIZE];
 unsigned char insub;
 unsigned short pmempos;
 unsigned short progsize;
+unsigned char dbg;

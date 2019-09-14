@@ -25,11 +25,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <time.h>
 #include "../defines.h"
 #include "../globals.h"
-#include "../hextoval.h"
+//#include "../tools/hextoval.h"
 
 void cmd_s(unsigned char, unsigned short, unsigned short, unsigned short, unsigned short);
 

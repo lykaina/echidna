@@ -25,18 +25,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);
   int i,j,r=0;
+  if(strcmp(argv[0],"echdebug")==0) dbg=1;
+  else dbg=0;
   if(argc < 2){
-    fprintf(stderr,"A file name is required.\n");
+    if(dbg==0) fprintf(stderr,"A file name is required.\n");
     return 1;
   }
   else if(argc > 2){
-    fprintf(stderr,"Too many arguments.\n");
+    if(dbg==0) fprintf(stderr,"Too many arguments.\n");
     return 1;
   }
   for(i=0;i<MEMSIZE;i++) mem[i]=0;
   for(i=0;i<PROGMEMSIZE;i++) pmem[i]=0;
   for(i=0;i<RECSIZE;i++) rec[i]=0;
-  //srand((unsigned int)(clock()%65536));
   reccount=0;
   for(i=0;i<SUBMASKSIZE;i++) submask[i]=0;
   insub=0;
@@ -51,7 +52,7 @@ int main(int argc, char *argv[]) {
   for (i=0;i<INSIZE;i++) a[i]=0;
   myFile = fopen(progname,fMode);
   if(myFile==NULL){
-    fprintf(stderr,"Invalid or Nonexistent File Name.\n");
+    if(dbg==0) fprintf(stderr,"Invalid or Nonexistent File Name.\n");
     return 1;
   }
   else{
@@ -94,4 +95,3 @@ int main(int argc, char *argv[]) {
   }
   return 0;
 }
-

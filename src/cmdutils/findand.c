@@ -20,23 +20,21 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
+#include "findand.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "defines.h"
-#include "globals.h"
-#include "tools/hextoval.h"
-#include "cmds/cmd_g.h"
-#include "cmds/cmd_l.h"
-#include "cmds/cmd_m.h"
-#include "cmds/cmd_s.h"
-#include "cmdutils/mval.h"
-#include "cmdutils/pval.h"
-#include "cmdutils/nextiw.h"
-#include "cmdutils/findand.h"
-
-int cmds(unsigned char[INSIZE]);
-
-#endif
+unsigned short findand(unsigned char l1, unsigned char l2)
+{
+    unsigned char b=0,c=0,d=0;
+    unsigned short p=0;
+    if(p >= filesize) while(1);
+    b=pmem[p++];
+    c=pmem[p++];
+    d=pmem[p++];
+    while(!((b=='&')&&(c==l1)&&(d==l2))){
+        if(p >= progsize) while(1);
+        b=c;
+        c=d;
+        d=pmem[p++];
+    }
+    return (unsigned short)(p-3);
+}

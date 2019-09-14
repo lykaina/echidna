@@ -24,8 +24,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 int cmds(unsigned char a[INSIZE]){
   int i;
-  //int di;
-  //for (di=0;di < INSIZE;di++) fputc(a[di],stderr);
+  int di;
+  if(dbg==1) for(di=0;di < INSIZE;di++) fputc(a[di],stderr);
   switch(a[0]){
     case '&': //Used to start a subroutine. Two hex follow. No Whitespace.
         insub++;
@@ -118,70 +118,6 @@ int cmds(unsigned char a[INSIZE]){
     default:
         return 2;
   }
-  //for(di=0;di<64;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
+  if(dbg==1) for(di=0;di<64;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
   return 0;
-}
-
-unsigned short mval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
-{
-    unsigned short r=0;
-    if(b=='!') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-    else if(b=='@') r=(unsigned short)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
-    else
-    {
-        fprintf(stderr,"ERROR: MVAL INPUT");
-        while(1);
-        r=0;
-    }
-    return r;
-}
-
-
-unsigned short pval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
-{
-    unsigned short r=0;
-    if(b=='@') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
-    else if(b=='!') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
-    else if(b=='=') r=(unsigned short)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
-    else
-    {
-        fprintf(stderr,"ERROR: PVAL INPUT");
-        while(1);
-        r=0;
-    }
-    return r;
-}
-
-unsigned short nextiw(unsigned char l1, unsigned char l2)
-{
-    unsigned char b=0,c=0,d=0;
-    unsigned short p=pmempos;
-    if(p >= progsize) while(1);
-    b=pmem[p++];
-    c=pmem[p++];
-    d=pmem[p++];
-    while(!((b=='-')&&(c==l1)&&(d==l2))){
-        if(p >= progsize) while(1);
-        b=c;
-        c=d;
-        d=pmem[p++];
-    }
-    return (unsigned short)(p-3);
-}
-
-unsigned short findand(unsigned char l1, unsigned char l2)
-{
-    unsigned char b=0,c=0,d=0;
-    unsigned short p=0;
-    if(p >= filesize) while(1);
-    b=pmem[p++];
-    c=pmem[p++];
-    d=pmem[p++];
-    while(!((b=='&')&&(c==l1)&&(d==l2))){
-        if(p >= progsize) while(1);
-        b=c;
-        c=d;
-        d=pmem[p++];
-    }
-    return (unsigned short)(p-3);
 }

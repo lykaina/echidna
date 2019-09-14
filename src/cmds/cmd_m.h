@@ -23,12 +23,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef H_CMDS__CMD_M
 #define H_CMDS__CMD_M
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "../defines.h"
 #include "../globals.h"
-#include "../hextoval.h"
 
 unsigned short cmd_m(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short);
 

@@ -20,9 +20,14 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_HEXTOVAL
-#define H_HEXTOVAL
+#ifndef H_CMDUTILS__MVAL
+#define H_CMDUTILS__MVAL
 
-unsigned char hextoval(char);
+#include <stdio.h>
+#include "../defines.h"
+#include "../globals.h"
+#include "../tools/hextoval.h"
+
+unsigned short mval(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

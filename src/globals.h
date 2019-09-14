@@ -37,5 +37,6 @@ extern unsigned char submask[SUBMASKSIZE];
 extern unsigned char insub;
 extern unsigned short pmempos;
 extern unsigned short progsize;
+extern unsigned char dbg;
 
 #endif

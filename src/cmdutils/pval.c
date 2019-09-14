@@ -20,23 +20,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
+#include "pval.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "defines.h"
-#include "globals.h"
-#include "tools/hextoval.h"
-#include "cmds/cmd_g.h"
-#include "cmds/cmd_l.h"
-#include "cmds/cmd_m.h"
-#include "cmds/cmd_s.h"
-#include "cmdutils/mval.h"
-#include "cmdutils/pval.h"
-#include "cmdutils/nextiw.h"
-#include "cmdutils/findand.h"
-
-int cmds(unsigned char[INSIZE]);
-
-#endif
+unsigned short pval(unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f)
+{
+    unsigned short r=0;
+    if(b=='@') r=mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)];
+    else if(b=='!') r=mem[mem[hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f)]];
+    else if(b=='=') r=(unsigned short)(hextoval(c)*4096+hextoval(d)*256+hextoval(e)*16+hextoval(f));
+    else
+    {
+        fprintf(stderr,"ERROR: PVAL INPUT");
+        while(1);
+        r=0;
+    }
+    return r;
+}

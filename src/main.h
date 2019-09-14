@@ -25,8 +25,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
+#include <string.h>
 #include "defines.h"
 #include "globals.h"
 #include "argnums.h"
