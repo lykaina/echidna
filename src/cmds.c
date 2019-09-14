@@ -118,6 +118,6 @@ int cmds(unsigned char a[INSIZE]){
     default:
         return 2;
   }
-  if(dbg==1) for(di=0;di<64;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
+  if(dbg==1) for(di=0;di<96;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
   return 0;
 }
