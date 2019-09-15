@@ -1,4 +1,5 @@
 cat.txt	"cat" while input is not newline.
 hello_world.txt	hello world program.
 rand_0-99.txt	random num from 0 to 99 while input is newline. uses subroutines.
+switch.txt	Example of a switch construct.
 utctime.txt	outputs utc time in HH:MM:SS format.

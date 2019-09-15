@@ -1,2 +1,2 @@
 Sg	outlu	outputs val1+val2*65536 as number string in range "0" to "2^32-1".
-Sg	[mullmem]	[nullmem]	[val]	[val]
+Sg	[nullmem]	[nullmem]	[val]	[val]
