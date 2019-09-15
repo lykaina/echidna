@@ -31,7 +31,6 @@ unsigned int rec[RECSIZE];
 unsigned char reccount;
 unsigned int srec[SRECSIZE];
 unsigned char sreccount;
-//unsigned short submask[SUBMASKSIZE];
 unsigned char insub;
 unsigned short pmempos;
 unsigned short progsize;
