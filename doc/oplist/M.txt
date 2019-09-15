@@ -1,2 +1,2 @@
-M	math	val0 = val1 op val2
+M	math	mem[val0] = val1 op val2
 M	[cmd]	[mem]	[val]	[val]
