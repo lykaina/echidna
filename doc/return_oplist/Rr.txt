@@ -1,0 +1,2 @@
+Rr	endsubif	Exits a sub from an if inside. Two hex follow.
+Rr	[char]	[char]		

@@ -1,0 +1,2 @@
+Rq	endsubwhif	Exits a sub from an if inside a while. Two hex follow
+Rq	[char]	[char]		

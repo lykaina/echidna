@@ -23,15 +23,15 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef H_IWSCMDS
 #define H_IWSCMDS
 
-//#include <stdio.h>
-//#include <stdlib.h>
 #include "defines.h"
 #include "globals.h"
 #include "tools/hextoval.h"
 #include "cmdutils/mval.h"
 #include "cmdutils/pval.h"
-#include "cmdutils/nextiw.h"
-#include "cmdutils/findand.h"
+#include "iwscmdutils/nextif.h"
+#include "iwscmdutils/nextwh.h"
+#include "iwscmdutils/findand.h"
+#include "iwscmds/cmd_r.h"
 
 int iwscmds(unsigned char[INSIZE]);
 

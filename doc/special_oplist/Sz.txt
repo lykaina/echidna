@@ -1,0 +1,2 @@
+Sz	2shr	{mem[val1(low)] mem[val1(high)]} = {mem[val1(low)] mem[val1(high)} >> ( {val2(low) val2(high)} % 32 )
+Sz	[mem]	[mem]	[val]	[val]

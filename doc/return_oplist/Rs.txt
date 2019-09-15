@@ -1,0 +1,2 @@
+Rs	endsub	End of Sub Marker. The two matching hex follow.
+Rs	[char]	[char]		

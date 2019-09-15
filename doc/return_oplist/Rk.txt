@@ -1,0 +1,2 @@
+Rk	endwhif	Ends a while from inside an if. Two hex follow.
+Rk	[char]	[char]		

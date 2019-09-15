@@ -1,0 +1,2 @@
+Sr	rand	mem[val(low)] mem[val(high)] = random num from 0 to (val2+val3*65536)
+Sr	[mem]	[mem]	[val]	[val]

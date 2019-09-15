@@ -26,60 +26,60 @@ void cmd_s(unsigned char ci, unsigned short m1, unsigned short m2, unsigned shor
 {
   unsigned long l;
   switch(ci){
-    case 'G':
+    case 'g':
         printf("%lu",(long unsigned)(p1+p2*65536));
         break;
-    case 'H':
+    case 'h':
         printf("%li",(long)(p1+p2*65536));
         break;
-    case 'I':
+    case 'i':
         printf("%i",(int)p1);
         break;
-    case 'J':
+    case 'j':
         printf("%u",(unsigned int)p1);
         break;
-    case 'K':
+    case 'k':
         l=time(NULL);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'R':
+    case 'r':
         srand(clock());
         l=(rand())%(p1+p2*65536);
         mem[m1]=(unsigned short)(l%(1<<16));
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'T':
+    case 't':
         l=(mem[m1]+mem[m2]*65536)+(p1+p2*65536);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'U':
+    case 'u':
         l=(mem[m1]+mem[m2]*65536)-(p1+p2*65536);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'V':
+    case 'v':
         l=(mem[m1]+mem[m2]*65536)*(p1+p2*65536);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'W':
+    case 'w':
         l=(mem[m1]+mem[m2]*65536)/(p1+p2*65536);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'X':
+    case 'x':
         l=(mem[m1]+mem[m2]*65536)%(p1+p2*65536);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'Y':
+    case 'y':
         l=(mem[m1]+mem[m2]*65536)<<((p1+p2*65536)%32);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);
         break;
-    case 'Z':
+    case 'z':
         l=(mem[m1]+mem[m2]*65536)>>((p1+p2*65536)%32);
         mem[m1]=(unsigned short)(l%65536);
         mem[m2]=(unsigned short)(l>>16);

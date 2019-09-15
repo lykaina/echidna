@@ -1,2 +1,0 @@
--	endifwh	1-byte-type {I,W} and 1-uchar-label
--	{I,W}	1-uchar-label		

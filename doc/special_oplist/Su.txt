@@ -1,0 +1,2 @@
+Su	2sub	{mem[val1(low)] mem[val1(high)]} = {mem[val1(low)] mem[val1(high)} - {val2(low) val2(high)}
+Su	[mem]	[mem]	[val]	[val]

@@ -1,0 +1,2 @@
+St	2add	{mem[val1(low)] mem[val1(high)]} = {mem[val1(low)] mem[val1(high)} + {val2(low) val2(high)}
+St	[mem]	[mem]	[val]	[val]

@@ -1,2 +1,0 @@
-SJ	outu	outputs val1 as number string in range "0" to "65556".
-SJ	[nullmem]	[nullmem]	[val]	[nullval]

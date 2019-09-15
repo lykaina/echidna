@@ -1,2 +1,2 @@
-P	ifwh_lt	if/while val0 < val1 {I,W} 1-uchar-label
-P	[val]	[val]	{I,W}	1-uchar-label
+P	ifwh_lt	if/while val0 < val1 {i,w} 2-hex-label
+P	[val]	[val]	{i,w}	2-hex-label

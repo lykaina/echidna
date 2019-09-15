@@ -23,17 +23,17 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "iwscmds.h"
 
 int iwscmds(unsigned char a[INSIZE]){
-  //int i;
+  int cr;
   switch(a[0]){
     case '&': //Used to start a subroutine. Two hex follow.
         insub++;
         break;
-    case '-':
+/*    case '-':
         if(reccount==0) return 3;
         if(a[1]=='W') pmempos=rec[reccount--];
         else if(a[1]=='I') reccount--;
         else return 3;
-        break;
+        break; */
     case 'N':
         if(sreccount >= ( SRECSIZE - 1 ) ) return 3;
         srec[++sreccount]=pmempos;
@@ -42,28 +42,33 @@ int iwscmds(unsigned char a[INSIZE]){
         break;
     case 'O':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=pmempos-13;
+        rec[++reccount]=pmempos-14;
         if(pval(a[1],a[2],a[3],a[4],a[5])==pval(a[6],a[7],a[8],a[9],a[10]));
-        else if(a[11]=='W'){pmempos=nextiw(a[11],a[12])+3;reccount--;}
-        else pmempos=nextiw(a[11],a[12]);
+        else if(a[11]=='w'){pmempos=nextwh(a[12],a[13]); reccount--;}
+        else if(a[11]=='i') pmempos=nextif(a[12],a[13]);
+        else return 4;
         break;
     case 'P':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=pmempos-13;
+        rec[++reccount]=pmempos-14;
         if(pval(a[1],a[2],a[3],a[4],a[5])<pval(a[6],a[7],a[8],a[9],a[10]));
-        else if(a[11]=='W'){pmempos=nextiw(a[11],a[12])+3;reccount--;}
-        else pmempos=nextiw(a[11],a[12]);
+        else if(a[11]=='w'){pmempos=nextwh(a[12],a[13]); reccount--;}
+        else if(a[11]=='i') pmempos=nextif(a[12],a[13]);
+        else return 4;
         break;
     case 'Q':
         if(reccount >= ( RECSIZE - 1 ) ) return 3;
-        rec[++reccount]=pmempos-13;
+        rec[++reccount]=pmempos-14;
         if(pval(a[1],a[2],a[3],a[4],a[5])!=pval(a[6],a[7],a[8],a[9],a[10]));
-        else if(a[11]=='W'){pmempos=nextiw(a[11],a[12])+3;reccount--;}
-        else pmempos=nextiw(a[11],a[12]);
+        else if(a[11]=='w'){pmempos=nextwh(a[12],a[13]); reccount--;}
+        else if(a[11]=='i') pmempos=nextif(a[12],a[13]);
+        else return 4;
         break;
     case 'R':
-        insub--;
-        pmempos=srec[sreccount--];
+        //insub--;
+        //pmempos=srec[sreccount--];
+        cr=cmd_r(a[1],a[2],a[3]);
+        if(cr > 0) return cr;
         break;
   }
   return 0;

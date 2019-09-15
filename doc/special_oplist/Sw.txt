@@ -1,0 +1,2 @@
+Sw	2div	{mem[val1(low)] mem[val1(high)]} = {mem[val1(low)] mem[val1(high)} / {val2(low) val2(high)}
+Sw	[mem]	[mem]	[val]	[val]

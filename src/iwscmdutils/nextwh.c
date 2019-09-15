@@ -20,24 +20,23 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
+#include "nextwh.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "defines.h"
-#include "globals.h"
-#include "tools/hextoval.h"
-#include "cmds/cmd_g.h"
-#include "cmds/cmd_l.h"
-#include "cmds/cmd_m.h"
-#include "cmds/cmd_s.h"
-#include "cmdutils/mval.h"
-#include "cmdutils/pval.h"
-#include "mathcmds.h"
-#include "iwscmds.h"
-#include "logiccmds.h"
-
-int cmds(unsigned char[INSIZE]);
-
-#endif
+unsigned short nextwh(unsigned char l1, unsigned char l2)
+{
+    unsigned char b=0,c=0,d=0,e=0;
+    unsigned short p=pmempos;
+    if(p >= progsize) while(1);
+    b=pmem[p++];
+    c=pmem[p++];
+    d=pmem[p++];
+    e=pmem[p++];
+    while(!((b=='R')&&(c=='w')&&(d==l1)&&(e==l2))){
+        if(p >= progsize) while(1);
+        b=c;
+        c=d;
+        d=e;
+        e=pmem[p++];
+    }
+    return (unsigned short)(p);
+}

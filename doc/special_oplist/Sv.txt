@@ -1,0 +1,2 @@
+Sv	2mul	{mem[val1(low)] mem[val1(high)]} = {mem[val1(low)] mem[val1(high)} * {val2(low) val2(high)}
+Sv	[mem]	[mem]	[val]	[val]

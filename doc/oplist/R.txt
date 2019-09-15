@@ -1,2 +1,2 @@
-R	return	Returns from a subroutine.
-R				
+R	return	Ends an if, while, or sub.
+R	[cmd]	[char]	[char]	

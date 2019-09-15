@@ -20,24 +20,16 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
-
-#include <stdio.h>
-#include <stdlib.h>
-#include "defines.h"
-#include "globals.h"
-#include "tools/hextoval.h"
-#include "cmds/cmd_g.h"
-#include "cmds/cmd_l.h"
-#include "cmds/cmd_m.h"
-#include "cmds/cmd_s.h"
-#include "cmdutils/mval.h"
-#include "cmdutils/pval.h"
-#include "mathcmds.h"
-#include "iwscmds.h"
 #include "logiccmds.h"
 
-int cmds(unsigned char[INSIZE]);
-
-#endif
+int logiccmds(unsigned char a[INSIZE]){
+  switch(a[0]){
+    case 'L': // 1-bit bitwise
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=cmd_l(pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]),pval(a[16],a[17],a[18],a[19],a[20]));
+        break;
+    case 'M': // 2-bit bitwise
+        mem[mval(a[1],a[2],a[3],a[4],a[5])]=cmd_m(pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]),pval(a[16],a[17],a[18],a[19],a[20]),pval(a[21],a[22],a[23],a[24],a[25]),pval(a[26],a[27],a[28],a[29],a[30]),pval(a[31],a[32],a[33],a[34],a[35]));
+        break;
+  }
+  return 0;
+}

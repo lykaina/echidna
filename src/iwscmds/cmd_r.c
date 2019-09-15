@@ -20,12 +20,43 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDUTILS__NEXTIW
-#define H_CMDUTILS__NEXTIW
+#include "cmd_r.h"
 
-#include "../defines.h"
-#include "../globals.h"
-
-unsigned short nextiw(unsigned char, unsigned char);
-
-#endif
+int cmd_r(unsigned char a, unsigned char b, unsigned char c){
+  switch(a){
+    case 'i': //endif
+        if(reccount==0) return 3;
+        reccount--;
+        break;
+    case 'k': //endwhileif
+        if(reccount==0) return 3;
+        pmempos=rec[reccount--];
+        reccount--;
+        break;
+    case 'q': //endsubwhileif
+        if(reccount==0) return 3;
+        if(sreccount==0) return 3;
+        insub--;
+        pmempos=srec[sreccount--];
+        reccount--;
+        reccount--;
+        break;
+    case 'r': //endsubif
+        if(reccount==0) return 3;
+        if(sreccount==0) return 3;
+        insub--;
+        pmempos=srec[sreccount--];
+        reccount--;
+        break;
+    case 's': //endsub
+        if(sreccount==0) return 3;
+        insub--;
+        pmempos=srec[sreccount--];
+        break;
+    case 'w': //endwhile
+        if(reccount==0) return 3;
+        pmempos=rec[reccount--];
+        break;
+  }
+  return 0;
+}
