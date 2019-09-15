@@ -38,5 +38,5 @@ unsigned short nextif(unsigned char l1, unsigned char l2)
         d=e;
         e=pmem[p++];
     }
-    return (unsigned short)(p-3);
+    return (unsigned short)(p-4);
 }
