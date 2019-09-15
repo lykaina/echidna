@@ -20,25 +20,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
+#ifndef H_IWSCMDS
+#define H_IWSCMDS
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 #include "defines.h"
 #include "globals.h"
 #include "tools/hextoval.h"
-#include "cmds/cmd_g.h"
-#include "cmds/cmd_l.h"
-#include "cmds/cmd_m.h"
-#include "cmds/cmd_s.h"
 #include "cmdutils/mval.h"
 #include "cmdutils/pval.h"
-//#include "cmdutils/nextiw.h"
-//#include "cmdutils/findand.h"
-#include "mathcmds.h"
-#include "iwscmds.h"
+#include "cmdutils/nextiw.h"
+#include "cmdutils/findand.h"
 
-int cmds(unsigned char[INSIZE]);
+int iwscmds(unsigned char[INSIZE]);
 
 #endif

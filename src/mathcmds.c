@@ -20,25 +20,30 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef H_CMDS
-#define H_CMDS
-
-#include <stdio.h>
-#include <stdlib.h>
-#include "defines.h"
-#include "globals.h"
-#include "tools/hextoval.h"
-#include "cmds/cmd_g.h"
-#include "cmds/cmd_l.h"
-#include "cmds/cmd_m.h"
-#include "cmds/cmd_s.h"
-#include "cmdutils/mval.h"
-#include "cmdutils/pval.h"
-//#include "cmdutils/nextiw.h"
-//#include "cmdutils/findand.h"
 #include "mathcmds.h"
-#include "iwscmds.h"
 
-int cmds(unsigned char[INSIZE]);
-
-#endif
+void mathcmds(unsigned char in, unsigned short a, unsigned short b, unsigned short c){
+  switch(in){
+    case 'T':
+        mem[a]=(unsigned short)((b+c)%65536);
+        break;
+    case 'U':
+        mem[a]=(unsigned short)((65536+b-c)%65536);
+        break;
+    case 'V':
+        mem[a]=(unsigned short)((b*c)%65536);
+        break;
+    case 'W':
+        mem[a]=(unsigned short)((b/c)%65536);
+        break;
+    case 'X':
+        mem[a]=(unsigned short)((b%c)%65536);
+        break;
+    case 'Y':
+        mem[a]=(unsigned short)((b<<(c%16))%65536);
+        break;
+    case 'Z':
+        mem[a]=(unsigned short)((b>>(c%16))%65536);
+        break;
+  }
+}
