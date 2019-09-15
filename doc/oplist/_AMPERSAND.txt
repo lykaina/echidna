@@ -1,2 +1,2 @@
-&	sub start	2-hex-label
-&	2-hex-label			
+&	sub start	4-hex-label
+&	4-hex-label			
