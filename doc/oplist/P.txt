@@ -1,2 +1,0 @@
-P	ifwh_lt	if/while val0 < val1 {i,w} 2-hex-label
-P	[val]	[val]	{i,w}	2-hex-label

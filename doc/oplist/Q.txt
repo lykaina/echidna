@@ -1,2 +1,0 @@
-Q	ifwh_ne	if/while val0 != val1 {i,w} 2-hex-label
-Q	[val]	[val]	{i,w}	2-hex-label

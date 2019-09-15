@@ -1,0 +1,2 @@
+Og	ifwh_g	val0 > val1 {i,w} 2-hex-label
+Og	[val]	[val]	{i,w}	2-hex-label
