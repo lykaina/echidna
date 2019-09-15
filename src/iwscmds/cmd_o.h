@@ -25,9 +25,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "../defines.h"
 #include "../globals.h"
-//#include "../tools/hextoval.h"
-//#include "../cmdutils/mval.h"
-//#include "../cmdutils/pval.h"
 #include "../iwscmdutils/nextif.h"
 #include "../iwscmdutils/nextwh.h"
 

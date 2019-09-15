@@ -34,7 +34,6 @@ int iwscmds(unsigned char a[INSIZE]){
         srec[++sreccount]=pmempos;
         nsp=pval(a[1],a[2],a[3],a[4],a[5]);
         submask[(insub+1)%SUBMASKSIZE]=nsp;
-        //pmempos=findand(a[1],a[2],a[3],a[4]);
         if(subtable[nsp]!=0) pmempos=subtable[nsp];
         else{
             if(dbg==0) fprintf(stderr, "Non-existent sub.\n");

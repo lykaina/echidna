@@ -28,7 +28,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <time.h>
 #include "../defines.h"
 #include "../globals.h"
-//#include "../tools/hextoval.h"
 
 void cmd_s(unsigned char, unsigned short, unsigned short, unsigned short, unsigned short);
 
