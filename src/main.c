@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
             pmem[pmempos++]=w;
         }
         if(pmem[pmempos-5]=='&'){
-            subtable[hextoval(pmempos-4)*4096+hextoval(pmempos-3)*256+hextoval(pmempos-2)*16+hextoval(pmempos-1)]=pmempos-5;
+            subtable[hextoval(pmem[pmempos-4])*4096+hextoval(pmem[pmempos-3])*256+hextoval(pmem[pmempos-2])*16+hextoval(pmem[pmempos-1])]=pmempos-5;
         }
         if(pmempos >= PROGMEMSIZE) return 1;
         progindex=ftell(myFile);
