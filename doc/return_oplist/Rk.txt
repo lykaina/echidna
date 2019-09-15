@@ -1,2 +1,2 @@
-Rk	endwhif	Ends a while from inside an if. Two hex follow.
-Rk	[char]	[char]		
+Rk	endwhif	Ends a while from inside an if. Four hex follow.
+Rk	[hex]	[hex]	[hex]	[hex]

@@ -1,2 +1,2 @@
-On	ifwh_n	val0 != val1 {i,w} 2-hex-label
-On	[val]	[val]	{i,w}	2-hex-label
+On	ifwh_n	val0 != val1 {i,w} 4-hex-label
+On	[val]	[val]	{i,w}	4-hex-label

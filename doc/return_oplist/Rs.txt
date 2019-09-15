@@ -1,2 +1,2 @@
-Rs	endsub	End of Sub Marker. The two matching hex follow.
-Rs	[char]	[char]		
+Rs	endsub	End of Sub Marker. The four matching hex follow.
+Rs	[hex]	[hex]	[hex]	[hex]

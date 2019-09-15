@@ -1,2 +1,2 @@
-N	call sub	2-hex-label
-N	2-hex-label			
+N	call sub	pval(4-hex-label)
+N	[value]			

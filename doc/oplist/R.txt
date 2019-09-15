@@ -1,2 +1,2 @@
 R	return	Ends an if, while, or sub.
-R	[cmd]	[char]	[char]	
+R	[cmd]	4-hex-label		

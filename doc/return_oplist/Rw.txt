@@ -1,2 +1,2 @@
-Rw	endwh	End of While marker. The two matching hex follow.
-Rw	[char]	[char]		
+Rw	endwh	End of While marker. The four matching hex follow.
+Rw	[hex]	[hex]	[hex]	[hex]

@@ -1,2 +1,2 @@
-Rr	endsubif	Exits a sub from an if inside. Two hex follow.
-Rr	[char]	[char]		
+Rr	endsubif	Exits a sub from an if inside. Four hex follow.
+Rr	[hex]	[hex]	[hex]	[hex]

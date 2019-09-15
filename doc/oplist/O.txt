@@ -1,2 +1,2 @@
-O	ifwh_sel	cmd val0 val1 {i,w} 2-hex-label
-O	[char]	[val] [val]	{i,w}	2-hex-label
+O	ifwh_sel	cmd val0 val1 {i,w} 4-hex-label
+O	[char]	[val] [val]	{i,w}	4-hex-label

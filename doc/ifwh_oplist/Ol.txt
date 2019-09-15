@@ -1,2 +1,2 @@
-Ol	ifwh_l	val0 < val1 {i,w} 2-hex-label
-Ol	[val]	[val]	{i,w}	2-hex-label
+Ol	ifwh_l	val0 < val1 {i,w} 4-hex-label
+Ol	[val]	[val]	{i,w}	4-hex-label

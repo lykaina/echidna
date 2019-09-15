@@ -1,2 +1,2 @@
-Ri	endif	End of If marker. The two matching hex follow.
-Ri	[char]	[char]		
+Ri	endif	End of If marker. The four matching hex follow.
+Ri	[hex]	[hex]	[hex]	[hex]
