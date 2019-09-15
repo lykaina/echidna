@@ -20,25 +20,17 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "argnums.h"
+#ifndef H_IWSCMDS__CMD_O
+#define H_IWSCMDS__CMD_O
 
-const unsigned char argnums[256] = {
-/*    0 1 2 3 4 5 6 7 8 9 A B C D E F     */
-/*0*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*0*/
-/*1*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*1*/
-/*2*/ 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0, /*2*/
-/*3*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*3*/
-/*4*/ 0,0,0,0,0,0,0,21,10,5,5,0,20,35,2,14, /*4*/
-/*5*/ 0,0,3,21,15,15,15,15,15,15,15,0,0,0,0,0, /*5*/
-/*6*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*6*/
-/*7*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*7*/
-/*8*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*8*/
-/*9*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*9*/
-/*A*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*A*/
-/*B*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*B*/
-/*C*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*C*/
-/*D*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*D*/
-/*E*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /*E*/
-/*F*/ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0  /*F*/
-/*    0 1 2 3 4 5 6 7 8 9 A B C D E F     */
-};
+#include "../defines.h"
+#include "../globals.h"
+//#include "../tools/hextoval.h"
+//#include "../cmdutils/mval.h"
+//#include "../cmdutils/pval.h"
+#include "../iwscmdutils/nextif.h"
+#include "../iwscmdutils/nextwh.h"
+
+int cmd_o(unsigned char, unsigned short, unsigned short, unsigned char, unsigned char, unsigned char);
+
+#endif

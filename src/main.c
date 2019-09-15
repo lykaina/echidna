@@ -24,7 +24,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);
-  int i,j,r=0;
+  int i,r=0;
   if(strcmp(argv[0],"echdebug")==0) dbg=1;
   else dbg=0;
   if(argc < 2){
@@ -45,7 +45,6 @@ int main(int argc, char *argv[]) {
   pmempos=0;
   progsize=0;
   unsigned char a[INSIZE],args,w;
-  unsigned int wcount;
   char *fMode = "rb";
   char *progname = argv[1];
   filesize=0;
@@ -62,7 +61,6 @@ int main(int argc, char *argv[]) {
     filesize=ftell(myFile);
     rewind(myFile);
     while(progindex < filesize){
-        wcount=0;
         fseek(myFile, progindex, SEEK_SET);
         if(progindex < filesize){
             w=(unsigned char)fgetc(myFile);

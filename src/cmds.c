@@ -23,13 +23,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "cmds.h"
 
 int cmds(unsigned char a[INSIZE]){
-  int i,iws=0,lc=0;
+  int iws=0,lc=0;
   int di;
   if(dbg==1) for(di=0;di < INSIZE;di++) fputc(a[di],stderr);
   if(dbg==1) for(di=0;di<DEBUGSIZE;di++){fputc(mem[di]%256,stderr); fputc((mem[di]>>8)%256,stderr);}
   switch(a[0]){
     case '&': //Used to start a subroutine. Two hex follow.
-//    case '-':
         iws=iwscmds(a);
         if(iws > 0) return iws;
         break;
@@ -55,8 +54,13 @@ int cmds(unsigned char a[INSIZE]){
         break;
     case 'N':
     case 'O':
+        iws=iwscmds(a);
+        if(iws > 0) return iws;
+        break;
     case 'P':
+        break;
     case 'Q':
+        break;
     case 'R':
         iws=iwscmds(a);
         if(iws > 0) return iws;
