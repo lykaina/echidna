@@ -24,25 +24,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 void mathcmds(unsigned char in, unsigned short a, unsigned short b, unsigned short c){
   switch(in){
-    case 'T':
+    case 't':
         mem[a]=(unsigned short)((b+c)%65536);
         break;
-    case 'U':
+    case 'u':
         mem[a]=(unsigned short)((65536+b-c)%65536);
         break;
-    case 'V':
+    case 'v':
         mem[a]=(unsigned short)((b*c)%65536);
         break;
-    case 'W':
+    case 'w':
         mem[a]=(unsigned short)((b/c)%65536);
         break;
-    case 'X':
+    case 'x':
         mem[a]=(unsigned short)((b%c)%65536);
         break;
-    case 'Y':
+    case 'y':
         mem[a]=(unsigned short)((b<<(c%16))%65536);
         break;
-    case 'Z':
+    case 'z':
         mem[a]=(unsigned short)((b>>(c%16))%65536);
         break;
   }

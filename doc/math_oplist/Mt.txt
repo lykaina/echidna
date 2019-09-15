@@ -1,0 +1,2 @@
+Mt	add	mem[val0] = (val1 + val2)
+Mt	[mem]	[val]	[val]	

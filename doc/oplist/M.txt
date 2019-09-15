@@ -1,2 +1,2 @@
-M	bitwise_2bit	mem[val0] = val1 val2 2byte-mask-if-zero-zero 2byte-mask-if-zero-one 2byte-mask-if-one-zero 2byte-mask-if-one-one
-M	[mem]	[val] [val]	[mask] [mask]	[mask] [mask]
+M	math	val0 = val1 op val2
+M	[cmd]	[mem]	[val]	[val]

@@ -48,9 +48,11 @@ int cmds(unsigned char a[INSIZE]){
         return 2;
         break;
     case 'L':
-    case 'M':
         lc=logiccmds(a);
         if(lc > 0) return lc;
+        break;
+    case 'M':
+        mathcmds(a[1],mval(a[2],a[3],a[4],a[5],a[6]),pval(a[7],a[8],a[9],a[10],a[11]),pval(a[12],a[13],a[14],a[15],a[16]));
         break;
     case 'N':
     case 'O':
@@ -75,7 +77,6 @@ int cmds(unsigned char a[INSIZE]){
     case 'X':
     case 'Y':
     case 'Z':
-        mathcmds(a[0],mval(a[1],a[2],a[3],a[4],a[5]),pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]));
         break;
     default:
         return 2;

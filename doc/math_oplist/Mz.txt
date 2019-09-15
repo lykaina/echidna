@@ -1,0 +1,2 @@
+Mz	shr	mem[val0] = (val1 >> (val2 % 16))
+Mz	[mem]	[val]	[val]	

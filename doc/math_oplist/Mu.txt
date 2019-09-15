@@ -1,0 +1,2 @@
+Mu	sub	mem[val0] = (val1 - val2)
+Mu	[mem]	[val]	[val]	

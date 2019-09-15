@@ -1,8 +1,5 @@
 Logic Codes:
-NOT [val]	L [mem] [val] =FFFF =0000
-[val1] NOR [val2]	M [mem] [val1] [val2] =FFFF =0000 =0000 =0000
-[val1] XOR [val2]	M [mem] [val1] [val2] =0000 =FFFF =FFFF =0000
-[val1] NAND [val2]	M [mem] [val1] [val2] =FFFF =FFFF =FFFF =0000
-[val1] AND [val2]	M [mem] [val1] [val2] =0000 =0000 =0000 =FFFF
-[val1] XNOR [val2]	M [mem] [val1] [val2] =FFFF =0000 =0000 =FFFF
-[val1] OR [val2]	M [mem] [val1] [val2] =0000 =FFFF =FFFF =FFFF
+NOT [val]	Ln [mem] [val] [nullval]
+[val1] AND [val2]	La [mem] [val1] [val2]
+[val1] OR [val2]	Lo [mem] [val1] [val2]
+[val1] XOR [val2]	Lx [mem] [val1] [val2]

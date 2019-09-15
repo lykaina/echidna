@@ -1,2 +1,2 @@
-L	bitwise_1bit	mem[val0] = val1 2byte-mask-if-zero 2byte-mask-if-one
-L	[mem]	[val]	[mask]	[mask]
+L	logic	mem[val0] = val1 op val2
+L	[char]	[mem]	[val]	[val]

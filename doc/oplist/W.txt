@@ -1,2 +1,0 @@
-W	div	mem[val0] = (val1 / val2)
-W	[mem]	[val]	[val]	

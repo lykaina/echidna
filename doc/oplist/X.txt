@@ -1,2 +1,0 @@
-X	mod	mem[val0] = (val1 % val2)
-X	[mem]	[val]	[val]	

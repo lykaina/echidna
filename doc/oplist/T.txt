@@ -1,2 +1,0 @@
-T	add	mem[val0] = (val1 + val2)
-T	[mem]	[val]	[val]	

@@ -1,2 +1,0 @@
-Y	shl	mem[val0] = (val1 << (val2 % 16))
-Y	[mem]	[val]	[val]	

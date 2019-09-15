@@ -1,0 +1,2 @@
+Mv	mul	mem[val0] = (val1 * val2)
+Mv	[mem]	[val]	[val]	
