@@ -26,7 +26,7 @@ int cmd_o(unsigned char a, unsigned short b, unsigned short c, unsigned char d, 
   if(reccount >= ( RECSIZE - 1 ) ) return 3;
   rec[++reccount]=pmempos-17;
   switch(a){
-    case 'e':
+    case 'q':
         if(b==c);
         else if(d=='w'){pmempos=nextwh(e,f,g,h); reccount--;}
         else if(d=='i') pmempos=nextif(e,f,g,h);

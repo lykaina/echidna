@@ -1,0 +1,2 @@
+Oq	ifwh_e	val0 == val1 {i,w} 4-hex-label
+Oq	[val]	[val]	{i,w}	4-hex-label

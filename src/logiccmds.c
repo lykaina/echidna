@@ -27,7 +27,7 @@ int logiccmds(unsigned char a[INSIZE]){
     case 'L': // 1-bit bitwise
         //mem[mval(a[1],a[2],a[3],a[4],a[5])]=cmd_l(pval(a[6],a[7],a[8],a[9],a[10]),pval(a[11],a[12],a[13],a[14],a[15]),pval(a[16],a[17],a[18],a[19],a[20]));
         switch(a[1]){
-            case 'a':
+            case 'g':
                 mem[mval(a[2],a[3],a[4],a[5],a[6])]=pval(a[7],a[8],a[9],a[10],a[11]) & pval(a[12],a[13],a[14],a[15],a[16]);
                 break;
             case 'n':
