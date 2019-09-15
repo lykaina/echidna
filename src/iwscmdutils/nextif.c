@@ -22,21 +22,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "nextif.h"
 
-unsigned short nextif(unsigned char l1, unsigned char l2)
+unsigned short nextif(unsigned char l1, unsigned char l2, unsigned char l3, unsigned char l4)
 {
-    unsigned char b=0,c=0,d=0,e=0;
+    unsigned char b=0,c=0,d=0,e=0,f=0,g=0;
     unsigned short p=pmempos;
     if(p >= progsize) while(1);
     b=pmem[p++];
     c=pmem[p++];
     d=pmem[p++];
     e=pmem[p++];
-    while(!((b=='R')&&(c=='i')&&(d==l1)&&(e==l2))){
+    f=pmem[p++];
+    g=pmem[p++];
+    while(!((b=='R')&&(c=='i')&&(d==l1)&&(e==l2)&&(f==l3)&&(g=l4))){
         if(p >= progsize) while(1);
         b=c;
         c=d;
         d=e;
-        e=pmem[p++];
+        e=f;
+        f=g;
+        g=pmem[p++];
     }
-    return (unsigned short)(p-4);
+    return (unsigned short)(p-6);
 }

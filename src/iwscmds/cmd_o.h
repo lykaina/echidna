@@ -31,6 +31,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "../iwscmdutils/nextif.h"
 #include "../iwscmdutils/nextwh.h"
 
-int cmd_o(unsigned char, unsigned short, unsigned short, unsigned char, unsigned char, unsigned char);
+int cmd_o(unsigned char, unsigned short, unsigned short, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

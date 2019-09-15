@@ -22,32 +22,32 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "cmd_o.h"
 
-int cmd_o(unsigned char a, unsigned short b, unsigned short c, unsigned char d, unsigned char e, unsigned char f){
+int cmd_o(unsigned char a, unsigned short b, unsigned short c, unsigned char d, unsigned char e, unsigned char f, unsigned char g, unsigned char h){
   if(reccount >= ( RECSIZE - 1 ) ) return 3;
   rec[++reccount]=pmempos-15;
   switch(a){
     case 'e':
         if(b==c);
-        else if(d=='w'){pmempos=nextwh(e,f); reccount--;}
-        else if(d=='i') pmempos=nextif(e,f);
+        else if(d=='w'){pmempos=nextwh(e,f,g,h); reccount--;}
+        else if(d=='i') pmempos=nextif(e,f,g,h);
         else return 4;
         break;
     case 'g':
         if(b>c);
-        else if(d=='w'){pmempos=nextwh(e,f); reccount--;}
-        else if(d=='i') pmempos=nextif(e,f);
+        else if(d=='w'){pmempos=nextwh(e,f,g,h); reccount--;}
+        else if(d=='i') pmempos=nextif(e,f,g,h);
         else return 4;
         break;
     case 'l':
         if(b<c);
-        else if(d=='w'){pmempos=nextwh(e,f); reccount--;}
-        else if(d=='i') pmempos=nextif(e,f);
+        else if(d=='w'){pmempos=nextwh(e,f,g,h); reccount--;}
+        else if(d=='i') pmempos=nextif(e,f,g,h);
         else return 4;
         break;
     case 'n':
         if(b!=c);
-        else if(d=='w'){pmempos=nextwh(e,f); reccount--;}
-        else if(d=='i') pmempos=nextif(e,f);
+        else if(d=='w'){pmempos=nextwh(e,f,g,h); reccount--;}
+        else if(d=='i') pmempos=nextif(e,f,g,h);
         else return 4;
         break;
   }

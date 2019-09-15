@@ -26,6 +26,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "../defines.h"
 #include "../globals.h"
 
-unsigned short nextwh(unsigned char, unsigned char);
+unsigned short nextwh(unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

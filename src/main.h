@@ -30,5 +30,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "globals.h"
 #include "argnums.h"
 #include "cmds.h"
-
+#include "tools/hextoval.h"
 #endif

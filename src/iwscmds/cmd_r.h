@@ -26,6 +26,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "../defines.h"
 #include "../globals.h"
 
-int cmd_r(unsigned char, unsigned char, unsigned char);
+int cmd_r(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

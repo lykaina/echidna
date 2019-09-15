@@ -26,6 +26,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "../defines.h"
 #include "../globals.h"
 
-unsigned short findand(unsigned char, unsigned char);
+unsigned short findand(unsigned char, unsigned char, unsigned char, unsigned char);
 
 #endif

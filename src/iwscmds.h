@@ -28,8 +28,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "tools/hextoval.h"
 #include "cmdutils/mval.h"
 #include "cmdutils/pval.h"
-//#include "iwscmdutils/nextif.h"
-//#include "iwscmdutils/nextwh.h"
 #include "iwscmdutils/findand.h"
 #include "iwscmds/cmd_r.h"
 #include "iwscmds/cmd_o.h"

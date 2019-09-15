@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
   for(i=0;i<SRECSIZE;i++) srec[i]=0;
   reccount=0;
   for(i=0;i<SUBMASKSIZE;i++) submask[i]=0;
+  for(i=0;i<SUBTABLESIZE;i++) subtable[i]=0;
   insub=0;
   pmempos=0;
   progsize=0;
@@ -68,6 +69,9 @@ int main(int argc, char *argv[]) {
                 w=(unsigned char)fgetc(myFile);
             }
             pmem[pmempos++]=w;
+        }
+        if(pmem[pmempos-5]=='&'){
+            subtable[hextoval(pmempos-4)*4096+hextoval(pmempos-3)*256+hextoval(pmempos-2)*16+hextoval(pmempos-1)]=pmempos-5;
         }
         if(pmempos >= PROGMEMSIZE) return 1;
         progindex=ftell(myFile);

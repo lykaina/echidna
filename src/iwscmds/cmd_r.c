@@ -22,7 +22,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "cmd_r.h"
 
-int cmd_r(unsigned char a, unsigned char b, unsigned char c){
+int cmd_r(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e){
   switch(a){
     case 'i': //endif
         if(reccount==0) return 3;
