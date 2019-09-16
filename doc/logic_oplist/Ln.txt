@@ -1,2 +1,2 @@
-Ln	not	mem[val0] = OR val1
+Ln	not	mem[val0] = NOT val1
 Ln	[mem]	[val]	[nullval]	
