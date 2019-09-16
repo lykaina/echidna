@@ -1,0 +1,2 @@
+Lg	and	mem[val0] = val1 AND val2
+Lg	[mem]	[val]	[val]	

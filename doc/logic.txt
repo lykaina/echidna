@@ -1,5 +1,0 @@
-Logic Codes:
-NOT [val]	Ln [mem] [val] [nullval]
-[val1] AND [val2]	Lg [mem] [val1] [val2]
-[val1] OR [val2]	Lo [mem] [val1] [val2]
-[val1] XOR [val2]	Lx [mem] [val1] [val2]

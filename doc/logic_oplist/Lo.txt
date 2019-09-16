@@ -1,0 +1,2 @@
+Lo	or	mem[val0] = val1 OR val2
+Lo	[mem]	[val]	[val]	

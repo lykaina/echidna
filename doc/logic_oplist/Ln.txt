@@ -1,0 +1,2 @@
+Ln	not	mem[val0] = OR val1
+Ln	[mem]	[val]	[nullval]	

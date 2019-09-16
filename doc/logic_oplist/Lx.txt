@@ -1,0 +1,2 @@
+Lx	xor	mem[val0] = val1 XOR val2
+Lx	[mem]	[val]	[val]	
